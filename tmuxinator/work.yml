@@ -29,7 +29,7 @@ root: ~/src/Levitate-API/
 # pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
-# tmux_options: -f ~/.tmux.mac.conf
+tmux_options: -f $HOME/.config/tmux/tmux.work.conf
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
@@ -58,6 +58,6 @@ windows:
   - ui/misc:
       layout: main-vertical
       panes:
-        - cd ../Levitate-FrontEnd/ && git pull
+        - cd ../Levitate-FrontEnd/ && git pull && yarn start:localtest
         - # blank pane
   #- server: api-build.sh
