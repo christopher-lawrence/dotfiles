@@ -1,96 +1,97 @@
 " Windows: change this file to _vimrc
 
 " Package Manager
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Plugins: {{{
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+call plug#begin()
 
 " Fugitive - Git pluging
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " NERDTree - Folder browser
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " NERDTree git plugin
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " CtrlP - Fuzzy search for files, buffers, MRU, etc
-Plugin 'ctrlpvim/ctrlp.vim'
-
-" Set this to 1 to use ultisnips for snippet handling
-let s:using_snippets = 0
+Plug 'ctrlpvim/ctrlp.vim'
 
 " OmniSharp
-Plugin 'OmniSharp/omnisharp-vim'
+Plug 'OmniSharp/omnisharp-vim'
 
 " OmniSharp Debugger
-Plugin 'puremourning/vimspector'
+" Plug 'puremourning/vimspector'
 
 " Mappings, code-actions available flag and statusline integration
-Plugin 'nickspoons/vim-sharpenup'
+Plug 'nickspoons/vim-sharpenup'
 
 " Linting/error highlighting
-Plugin 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 
 " Vim  integration, used as OmniSharp selector
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Autocompletion
-Plugin 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
 
 " Colorscheme
-Plugin 'gruvbox-community/gruvbox'
-" Plugin 'joshdick/onedark.vim'
-" Plugin 'nanotech/jellybeans.vim' 
-Plugin 'arcticicestudio/nord-vim'
+Plug 'gruvbox-community/gruvbox'
+" Plug 'joshdick/onedark.vim'
+" Plug 'nanotech/jellybeans.vim' 
+Plug 'arcticicestudio/nord-vim'
 "
 " Statusline
-Plugin 'itchyny/lightline.vim'
-" Plugin 'shinchu/lightline-gruvbox.vim'
-Plugin 'maximbaz/lightline-ale'
+Plug 'itchyny/lightline.vim'
+" Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'maximbaz/lightline-ale'
 
 " GitGutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Spelling for Pascal/camel/etc cases
-Plugin 'kamykn/spelunker.vim'
+Plug 'kamykn/spelunker.vim'
 
 " Auto formatter
-" Plugin 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
 
 " Editor Config
 " https://github.com/editorconfig/editorconfig-vim
-Plugin 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " Snippet support
-if s:using_snippets
-  Plugin 'sirver/ultisnips'
-endif
+" Plug 'sirver/ultisnips'
 
-call vundle#end()            " required
+" Initialize plugin system
+call plug#end()
+
 " }}}
 
 " Settings: {{{
+
 filetype indent plugin on
-if !exists('g:syntax_on') | syntax enable | endif
+
+syntax enable
+
 set encoding=utf-8
+
 scriptencoding utf-8
 
 let mapleader = "\<SPACE>"
 
 set completeopt=menuone,noinsert,noselect,popuphidden
-set completepopup=highlight:Pmenu,border:off
+" set completepopup=highlight:Pmenu,border:off
+set completepopup=highlight:Pmenu
 
 set backspace=indent,eol,start
 set expandtab
@@ -108,52 +109,65 @@ set nostartofline
 set splitbelow
 set splitright
 
+" Highlight search
 set hlsearch
-set number
+
+" Auto move to search
+set incsearch
+
+" Line numbers -- hybrid
+set number relativenumber
+
+" Position in file -- bottom right
 set ruler
+
 " set noruler
-set noshowmode
+" set noshowmode
 set signcolumn=yes
 
+" Enable mouse for all modes
 set mouse=a
-set updatetime=1000
+" set updatetime=1000
 
 " This seems to fix issues with Ctrl-P
-set mmp=5000
+set maxmempattern=5000
 
 " Default is 4000ms. This should allow GitGutter to update more frequently
-set updatetime=250
+" set updatetime=250
 
 " lightline fix
 set laststatus=2
+
+" This is supposed to allow for system clipboard
+" set clipboard=unnamedplus
 " }}}
 
 " CtrlP: {{{
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+
+" Allow <cr> to open in a tab
+let g:ctrlp_prompt_mappings = {
+\ 'AcceptSelection("e")': ['<c-t>'],
+\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+\ }
 " }}}
 
 " Colors: {{{
-augroup ColorschemePreferences
-  autocmd!
-  " These preferences clear some gruvbox background colours, allowing transparency
-  autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
-  autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
-  autocmd ColorScheme * highlight Todo       ctermbg=NONE guibg=NONE
- " Link ALE sign highlights to similar equivalents without background colours
-  autocmd ColorScheme * highlight link ALEErrorSign   WarningMsg
-  autocmd ColorScheme * highlight link ALEWarningSign ModeMsg
-  autocmd ColorScheme * highlight link ALEInfoSign    Identifier
-augroup END
+" TODO: WTF does this do??
+" augroup ColorschemePreferences
+"   autocmd!
+"   " These preferences clear some gruvbox background colours, allowing transparency
+"   autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
+"   autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
+"   autocmd ColorScheme * highlight Todo       ctermbg=NONE guibg=NONE
+"  " Link ALE sign highlights to similar equivalents without background colours
+"   autocmd ColorScheme * highlight link ALEErrorSign   WarningMsg
+"   autocmd ColorScheme * highlight link ALEWarningSign ModeMsg
+"   autocmd ColorScheme * highlight link ALEInfoSign    Identifier
+" augroup END
 
-" This can cause weird color issues
-" Use truecolor in the terminal, when it is supported
-" if has('termguicolors')
-" set termguicolors
-" endif
-
-" set background=dark
-set bg=dark
+set background=dark
 " colorscheme gruvbox
 colorscheme nord
 " }}}
@@ -162,8 +176,8 @@ colorscheme nord
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '•'
 let g:ale_sign_info = '·'
-let g:ale_sign_style_error = '·'
-let g:ale_sign_style_warning = '·'
+" let g:ale_sign_style_error = '·'
+" let g:ale_sign_style_warning = '·'
 
 let g:ale_linters = { 'cs': ['OmniSharp'] }
 
@@ -177,9 +191,9 @@ let g:asyncomplete_auto_completeopt = 0
 " }}}
 
 " Autoformat: {{{
-let g:formatterpath = ['/usr/local/Cellar/astyle/3.1/bin']
-let g:formatdef_cs_format = '"astyle --mode=cs --style=kr --indent-namespaces -pcH".(&expandtab ? "s".shiftwidth() : "t")'
-let g:formatters_cs = ['cs_format']
+" let g:formatterpath = ['/usr/local/Cellar/astyle/3.1/bin']
+" let g:formatdef_cs_format = '"astyle --mode=cs --style=kr --indent-namespaces -pcH".(&expandtab ? "s".shiftwidth() : "t")'
+" let g:formatters_cs = ['cs_format']
 " }}}
 
 " Sharpenup: {{{
@@ -191,27 +205,29 @@ let g:sharpenup_statusline_opts = { 'Text': '%s (%p/%P)' }
 let g:sharpenup_statusline_opts.Highlight = 0
 
 augroup OmniSharpIntegrations
-  autocmd!
-  autocmd User OmniSharpProjectUpdated,OmniSharpReady call lightline#update()
+autocmd!
+autocmd User OmniSharpProjectUpdated,OmniSharpReady call lightline#update()
 augroup END
 " }}}
 
 " Vimspector: {{{
 " let g:vimspector_enable_mappings = 'HUMAN'
-map <F5> :call vimspector#Continue()<CR>
-map <F9> :call vimspector#ToggleBreakpoint()<CR>
+" map <F5> :call vimspector#Continue()<CR>
+" map <F9> :call vimspector#ToggleBreakpoint()<CR>
 " }}}
 
 " Lightline: {{{
 "\ 'colorscheme': 'jellybeans',
 "\ 'colorscheme': 'gruvbox',
-"\ 'colorscheme': 'nord',
 let g:lightline = {
 \ 'colorscheme': 'nord',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
 \ 'active': {
 \   'left': [
 \     ['mode', 'paste'],
-\     ['readonly', 'filename', 'tagbar', 'modified', 'gitbranch']
+\     ['gitbranch', 'filename', 'modified'],
+\     ['readonly', 'tagbar']
 \   ],
 \   'right': [
 \     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
@@ -257,32 +273,14 @@ let g:lightline#ale#indicator_ok = "\uf00c"
 " }}}
 
 " OmniSharp: {{{
+" How do display popups -- ex Preview Definition
 let g:OmniSharp_popup_position = 'peek'
-if has('nvim')
-  let g:OmniSharp_popup_options = {
-  \ 'winhl': 'Normal:NormalFloat'
-  \}
-else
-  let g:OmniSharp_popup_options = {
-  \ 'highlight': 'Normal',
-  \ 'padding': [0, 0, 0, 0],
-  \ 'border': [1]
-  \}
-endif
-let g:OmniSharp_popup_mappings = {
-\ 'sigNext': '<C-n>',
-\ 'sigPrev': '<C-p>',
-\ 'pageDown': ['<C-f>', '<PageDown>'],
-\ 'pageUp': ['<C-b>', '<PageUp>']
-\}
+let g:OmniSharp_want_snippet = 0
+" let g:OmniSharp_highlight_types = 0
 
-if s:using_snippets
-  let g:OmniSharp_want_snippet = 1
-endif
-
-let g:OmniSharp_highlight_groups = {
-\ 'ExcludedCode': 'NonText'
-\}
+" let g:OmniSharp_highlight_groups = {
+" \ 'ExcludedCode': 'NonText'
+" \}
 " Use FZF for symbol lookup
 let g:OmniSharp_selector_ui = 'fzf'
 let g:OmniSharp_selector_findusages = 'fzf'
@@ -296,42 +294,53 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
 " FZF: {{{
 nnoremap <leader>ffs :Ag<CR>
+" This is the default extra key bindings
+ let g:fzf_action = {
+    \ '<cr>': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
 " }}}
 
 " NERDTree: {{{
 nnoremap <silent> <leader>ntt :NERDTreeToggle<CR>
-nnoremap <silent> <leader>ntn :NERDTree
+nnoremap <silent> <leader>ntn :NERDTreeFocus<CR>
 nnoremap <silent> <leader>ntf :NERDTreeFind<CR>
-let NERDTreeMinimumUI = 1
-let NERDTreeDirArrows = 1
+let NERDTreeShowBookmarks=1
+" Start NERDTree and put the cursor back in the other window.
+" autocmd VimEnter * NERDTree | wincmd p
+" Open the existing NERDTree on each new tab.
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " }}}
 
-" (fugative) Git: {{{
-nnoremap <silent> <leader>g :Git<CR>
+" (fugitive) Git: {{{
+nnoremap <silent> <leader>g :G<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gd :Gdiffsplit<CR>
+" Select buffer 3 -- on the right -- during merge conflic / diff view
+nmap <leader>gj :diffget //3<CR>
+" Select buffer 2 -- on the left -- during merge conflic / diff view
+nmap <leader>gf :diffget //2<CR>
 " }}}
 
 " GitGutter: {{{
-let g:gitgutter_log=1
+let g:gitgutter_log=0
 " }}}
 
 " Spelunker: {{{
 autocmd ColorScheme *
-    \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e |
-    \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+\ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e |
+\ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
 " }}}
 
 " END HERE }}}
 "
 
 " Misc: {{{
-syntax enable
 "set autochdir " -- This setting affects NERDTree-git-plugin
 " set macligatures
 " Clear hlsearch
 :command C let @/=""
-" Change cursor based on mode -- tmux running in iTerm2 on macos *only*!
+" Change cursor based on mode -- tmux running on macos *only*!
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\" " insert
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\" " replace
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\" " normal
@@ -363,6 +372,8 @@ map <F2> :bd<CR>
 " Consoles do not support the use of TAB
 " map <C-S-TAB> :tabprev<CR>
 " map <C-TAB> :tabnext<CR>
+noremap <silent> <C-k> :tabnext<CR>
+noremap <silent> <C-j> :tabprev<CR>
 noremap <silent> <F4> :tabclose<CR>
 noremap <silent> <C-t> :tabnew<CR>
 noremap <silent> th :tabfirst<CR>
@@ -388,7 +399,8 @@ set guifont=FiraCodeNerdFontComplete-Regular:h14
  
 
 " Default to Documents folder
-cd ~/src/Levitate-API
+" Use tmuxinator and set values there
+" cd ~/src/Levitate-API
 
-set nowrap
+" set nowrap
 

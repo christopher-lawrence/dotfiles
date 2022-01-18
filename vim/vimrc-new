@@ -1,0 +1,300 @@
+set nocompatible              " be iMproved, required
+" filetype off                  " required
+
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+call plug#begin()
+
+Plug 'arcticicestudio/nord-vim'
+
+" Statusline
+Plug 'itchyny/lightline.vim'
+
+" Linting/error highlighting
+Plug 'dense-analysis/ale'
+
+" Fugitive - Git pluging
+Plug 'tpope/vim-fugitive'
+
+" NERDTree - Folder browser
+Plug 'scrooloose/nerdtree'
+
+" NERDTree git plugin
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" CtrlP - Fuzzy search for files, buffers, MRU, etc
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Set this to 1 to use ultisnips for snippet handling
+" -- For OmniSharp snippets
+let s:using_snippets = 1
+
+" OmniSharp
+Plug 'OmniSharp/omnisharp-vim'
+
+" OmniSharp Debugger
+" Plugin 'puremourning/vimspector'
+
+" Mappings, code-actions available flag and statusline integration
+Plug 'nickspoons/vim-sharpenup'
+
+" Linting/error highlighting
+Plug 'dense-analysis/ale'
+
+" Vim  integration, used as OmniSharp selector
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" Autocompletion
+Plug 'prabirshrestha/asyncomplete.vim'
+
+" Initialize plugin system
+call plug#end()
+
+colorscheme nord
+
+" General Settings: {{{
+
+let mapleader = "\<SPACE>"
+
+set encoding=utf-8
+
+" From other vimrc
+" set completeopt=menuone,noinsert,noselect,popuphidden
+" internal autocomplete
+filetype plugin on
+set completeopt=longest,menuone
+set completepopup=highlight:Pmenu,border:on
+
+" Line number
+set number
+" Position in botton right
+set ruler
+
+" lightline fix
+set laststatus=2
+
+set guifont=FiraCodeNerdFontComplete-Regular:h14
+
+" Clear hlsearch
+:command C let @/=""
+
+" enable mouse for normal/visual/input
+set mouse=nvi
+
+" This seems to fix issues with Ctrl-P
+set mmp=5000
+
+" Default is 4000ms. This should allow GitGutter to update more frequently
+set updatetime=250
+
+" Change cursor based on mode -- tmux running on macos *only*!
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\" " insert
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\" " replace
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\" " normal
+" These speed up the transition of the cursor
+set ttimeout
+set ttimeoutlen=1
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:.
+set ttyfast
+
+" }}}
+
+" Maps: {{{
+" Close the buffer and window associated with it
+map <F2> :bd<CR>
+
+" Tabs: {{{
+" Consoles do not support the use of TAB :*\
+map <C-S-TAB> :tabprev<CR>
+map <C-TAB> :tabnext<CR>
+noremap <silent> <F4> :tabclose<CR>
+noremap <silent> <C-t> :tabnew<CR>
+noremap <silent> th :tabfirst<CR>
+noremap <silent> tj :tabnext<CR>
+noremap <silent> tk :tabprev<CR>
+noremap <silent> tl :tablast<CR>
+noremap <silent> tt :tabedit<Space>
+noremap <silent> tn :tabnew<Space>
+noremap <silent> tm :tabm<Space> 
+noremap <silent> td :tabclose<CR>
+" Go to last active tab 
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
+" }}}
+
+" }}}
+
+" CtrlP: {{{
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+
+" Allow <cr> to open in a tab
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+" }}}
+
+" ALE: {{{
+let g:ale_sign_error = '!>'
+let g:ale_sign_warning = '•>'
+let g:ale_sign_info = '·'
+let g:ale_sign_style_error = '·'
+let g:ale_sign_style_warning = '·'
+
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+
+nmap <silent> <leader>aj :ALENextWrap<cr>
+nmap <silent> <leader>ak :ALEPreviousWrap<cr>
+" }}}
+
+" OmniSharp: {{{
+let g:OmniSharp_popup_position = 'peek'
+if has('nvim')
+  let g:OmniSharp_popup_options = {
+  \ 'winhl': 'Normal:NormalFloat'
+  \}
+else
+  let g:OmniSharp_popup_options = {
+  \ 'highlight': 'Normal',
+  \ 'padding': [0, 0, 0, 0],
+  \ 'border': [1]
+  \}
+endif
+" let g:OmniSharp_popup_mappings = {
+" \ 'sigNext': '<C-n>',
+" \ 'sigPrev': '<C-p>',
+" \ 'pageDown': ['<C-f>', '<PageDown>'],
+" \ 'pageUp': ['<C-b>', '<PageUp>']
+" \}
+
+if s:using_snippets
+  let g:OmniSharp_want_snippet = 1
+endif
+
+let g:OmniSharp_highlight_groups = {
+\ 'ExcludedCode': 'NonText'
+\}
+" Use FZF for symbol lookup
+let g:OmniSharp_selector_ui = 'fzf'
+let g:OmniSharp_selector_findusages = 'fzf'
+" }}}
+
+" Sharpenup: {{{
+" All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
+" :OmniSharpGotoDefinition
+let g:sharpenup_map_prefix = '<leader>os'
+
+let g:sharpenup_statusline_opts = { 'Text': '%s (%p/%P)' }
+let g:sharpenup_statusline_opts.Highlight = 0
+
+augroup OmniSharpIntegrations
+  autocmd!
+  autocmd User OmniSharpProjectUpdated,OmniSharpReady call lightline#update()
+augroup END
+" }}}
+
+" AsyncAutocomplete: {{{
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" }}}
+
+" Lightline: {{{
+"\ 'colorscheme': 'jellybeans',
+"\ 'colorscheme': 'gruvbox',
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\ 'active': {
+\   'left': [
+\     ['mode', 'paste'],
+\     ['gitbranch', 'filename', 'modified'],
+\     ['readonly', 'tagbar']
+\   ],
+\   'right': [
+\     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+\     ['lineinfo'], ['percent'],
+\     ['fileformat', 'fileencoding', 'filetype', 'sharpenup' ]
+\   ],
+\ },
+\ 'inactive': {
+\   'right': [['lineinfo'], ['percent'], ['sharpenup']],
+\   'left': [
+\     ['mode', 'paste'],
+\     ['readonly', 'filename', 'tagbar', 'modified']
+\   ],
+\ },
+\ 'component': {
+\   'sharpenup': sharpenup#statusline#Build(),
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead',
+\ },
+\ 'component_expand': {
+\   'linter_checking': 'lightline#ale#checking',
+\   'linter_infos': 'lightline#ale#infos',
+\   'linter_warnings': 'lightline#ale#warnings',
+\   'linter_errors': 'lightline#ale#errors',
+\   'linter_ok': 'lightline#ale#ok'
+\  },
+\ 'component_type': {
+\   'linter_checking': 'right',
+\   'linter_infos': 'right',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'linter_ok': 'right'
+\  }
+\}
+" Use unicode chars for ale indicators in the statusline
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_infos = "\uf129"
+let g:lightline#ale#indicator_warnings = "\uf071"
+let g:lightline#ale#indicator_errors = "\uf05e"
+let g:lightline#ale#indicator_ok = "\uf00c"
+" }}}
+
+" NERDTree: {{{
+nnoremap <silent> <leader>ntt :NERDTreeToggle<CR>
+nnoremap <silent> <leader>ntn :NERDTreeFocus<CR>
+nnoremap <silent> <leader>ntf :NERDTreeFind<CR>
+let NERDTreeMinimumUI = 1
+let NERDTreeDirArrows = 1
+" Start NERDTree and put the cursor back in the other window.
+" autocmd VimEnter * NERDTree | wincmd p
+" Open the existing NERDTree on each new tab.
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" }}}
+
+" (fugitive) Git: {{{
+nnoremap <silent> <leader>g :G<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gd :Gdiffsplit<CR>
+" Select buffer 3 -- on the right -- during merge conflic / diff view
+nmap <leader>gj :diffget //3<CR>
+" Select buffer 2 -- on the left -- during merge conflic / diff view
+nmap <leader>gf :diffget //2<CR>
+" }}}
+
+" GitGutter: {{{
+let g:gitgutter_log=1
+" }}}
+
+" Spelunker: {{{
+autocmd ColorScheme *
+    \ highlight SpelunkerSpellBad cterm=underline ctermfg=247 gui=underline guifg=#9e9e9e |
+    \ highlight SpelunkerComplexOrCompoundWord cterm=underline ctermfg=NONE gui=underline guifg=NONE
+" }}}
+
+" FZF: {{{
+nnoremap <leader>ffs :Ag<CR>
+" }}}
+
