@@ -26,15 +26,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " CtrlP - Fuzzy search for files, buffers, MRU, etc
 Plug 'ctrlpvim/ctrlp.vim'
 
-" OmniSharp
-Plug 'OmniSharp/omnisharp-vim'
-
-" OmniSharp Debugger
-" Plug 'puremourning/vimspector'
-
-" Mappings, code-actions available flag and statusline integration
-Plug 'nickspoons/vim-sharpenup'
-
 " Linting/error highlighting
 Plug 'dense-analysis/ale'
 
@@ -42,15 +33,12 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Autocompletion
-Plug 'prabirshrestha/asyncomplete.vim'
-
 " Colorscheme
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
 " Plug 'joshdick/onedark.vim'
 " Plug 'nanotech/jellybeans.vim' 
 Plug 'arcticicestudio/nord-vim'
-"
+
 " Statusline
 Plug 'itchyny/lightline.vim'
 " Plug 'shinchu/lightline-gruvbox.vim'
@@ -62,15 +50,10 @@ Plug 'airblade/vim-gitgutter'
 " Spelling for Pascal/camel/etc cases
 Plug 'kamykn/spelunker.vim'
 
-" Auto formatter
-" Plug 'Chiel92/vim-autoformat'
-
-" Editor Config
-" https://github.com/editorconfig/editorconfig-vim
-Plug 'editorconfig/editorconfig-vim'
-
-" Snippet support
-" Plug 'sirver/ultisnips'
+" TODO: Load other plugin files
+if filereadable(".vim.plugins")
+    so .vim.plugins
+endif
 
 " Initialize plugin system
 call plug#end()
@@ -142,6 +125,51 @@ set laststatus=2
 " set clipboard=unnamedplus
 " }}}
 
+" Lightline: {{{
+"\ 'colorscheme': 'jellybeans',
+"\ 'colorscheme': 'gruvbox',
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\ 'active': {
+\   'left': [
+\     ['mode', 'paste'],
+\     ['gitbranch', 'filename', 'modified'],
+\     ['readonly', 'tagbar']
+\   ],
+\   'right': [
+\     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+\     ['lineinfo'], ['percent'],
+\     ['fileformat', 'fileencoding', 'filetype' ]
+\   ],
+\ },
+\ 'inactive': {
+\   'right': [['lineinfo'], ['percent'], ['sharpenup']],
+\   'left': [
+\     ['mode', 'paste'],
+\     ['readonly', 'filename', 'tagbar', 'modified']
+\   ],
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead',
+\ },
+\ 'component_expand': {
+\   'linter_checking': 'lightline#ale#checking',
+\   'linter_infos': 'lightline#ale#infos',
+\   'linter_warnings': 'lightline#ale#warnings',
+\   'linter_errors': 'lightline#ale#errors',
+\   'linter_ok': 'lightline#ale#ok'
+\  },
+\ 'component_type': {
+\   'linter_checking': 'right',
+\   'linter_infos': 'right',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'linter_ok': 'right'
+\  }
+\}
+
 " CtrlP: {{{
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
@@ -185,84 +213,11 @@ nmap <silent> <leader>aj :ALENextWrap<cr>
 nmap <silent> <leader>ak :ALEPreviousWrap<cr>
 " }}}
 
-" Asyncomplete: {{{
-let g:asyncomplete_auto_popup = 1
-let g:asyncomplete_auto_completeopt = 0
-" }}}
-
 " Autoformat: {{{
 " let g:formatterpath = ['/usr/local/Cellar/astyle/3.1/bin']
 " let g:formatdef_cs_format = '"astyle --mode=cs --style=kr --indent-namespaces -pcH".(&expandtab ? "s".shiftwidth() : "t")'
 " let g:formatters_cs = ['cs_format']
 " }}}
-
-" Sharpenup: {{{
-" All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
-" :OmniSharpGotoDefinition
-let g:sharpenup_map_prefix = '<leader>os'
-
-let g:sharpenup_statusline_opts = { 'Text': '%s (%p/%P)' }
-let g:sharpenup_statusline_opts.Highlight = 0
-
-augroup OmniSharpIntegrations
-autocmd!
-autocmd User OmniSharpProjectUpdated,OmniSharpReady call lightline#update()
-augroup END
-" }}}
-
-" Vimspector: {{{
-" let g:vimspector_enable_mappings = 'HUMAN'
-" map <F5> :call vimspector#Continue()<CR>
-" map <F9> :call vimspector#ToggleBreakpoint()<CR>
-" }}}
-
-" Lightline: {{{
-"\ 'colorscheme': 'jellybeans',
-"\ 'colorscheme': 'gruvbox',
-let g:lightline = {
-\ 'colorscheme': 'nord',
-\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
-\ 'active': {
-\   'left': [
-\     ['mode', 'paste'],
-\     ['gitbranch', 'filename', 'modified'],
-\     ['readonly', 'tagbar']
-\   ],
-\   'right': [
-\     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
-\     ['lineinfo'], ['percent'],
-\     ['fileformat', 'fileencoding', 'filetype', 'sharpenup' ]
-\   ],
-\ },
-\ 'inactive': {
-\   'right': [['lineinfo'], ['percent'], ['sharpenup']],
-\   'left': [
-\     ['mode', 'paste'],
-\     ['readonly', 'filename', 'tagbar', 'modified']
-\   ],
-\ },
-\ 'component': {
-\   'sharpenup': sharpenup#statusline#Build(),
-\ },
-\ 'component_function': {
-\   'gitbranch': 'FugitiveHead',
-\ },
-\ 'component_expand': {
-\   'linter_checking': 'lightline#ale#checking',
-\   'linter_infos': 'lightline#ale#infos',
-\   'linter_warnings': 'lightline#ale#warnings',
-\   'linter_errors': 'lightline#ale#errors',
-\   'linter_ok': 'lightline#ale#ok'
-\  },
-\ 'component_type': {
-\   'linter_checking': 'right',
-\   'linter_infos': 'right',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error',
-\   'linter_ok': 'right'
-\  }
-\}
 
 " Use unicode chars for ale indicators in the statusline
 let g:lightline#ale#indicator_checking = "\uf110"
@@ -270,33 +225,6 @@ let g:lightline#ale#indicator_infos = "\uf129"
 let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
-" }}}
-
-" OmniSharp: {{{
-" How do display popups -- ex Preview Definition
-let g:OmniSharp_popup_position = 'peek'
-let g:OmniSharp_want_snippet = 0
-" let g:OmniSharp_highlight_types = 0
-" \ 'highlight': 'Normal',
-" Note exactly sure _where_ this is used.  Seems to be for autocomplete tasks
-" let g:OmniSharp_popup_options = {
-"     \ 'highlight': 'Pmenu',
-"     \ 'padding': [0, 0, 0, 0],
-"     \ 'border': [1]
-" \}
-
-" let g:OmniSharp_highlight_groups = {
-" \ 'ExcludedCode': 'NonText'
-" \}
-" Use FZF for symbol lookup
-let g:OmniSharp_selector_ui = 'fzf'
-let g:OmniSharp_selector_findusages = 'fzf'
-" }}}
-
-" AsyncAutocomplete: {{{
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
 " FZF: {{{
@@ -353,10 +281,12 @@ autocmd ColorScheme *
 " set macligatures
 " Clear hlsearch
 :command C let @/=""
+
 " Change cursor based on mode -- tmux running on macos *only*!
 let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\" " insert
 let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\" " replace
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\" " normal
+
 " These speed up the transition of the cursor
 set ttimeout
 set ttimeoutlen=1
@@ -416,4 +346,9 @@ set guifont=FiraCodeNerdFontComplete-Regular:h14
 " cd ~/src/Levitate-API
 
 " set nowrap
+
+" Load custom vim settings
+if filereadable(".vim.custom")
+    so .vim.custom
+endif
 
