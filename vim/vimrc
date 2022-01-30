@@ -146,11 +146,11 @@ set laststatus=2
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
 
-" Allow <cr> to open in a tab
-let g:ctrlp_prompt_mappings = {
-\ 'AcceptSelection("e")': ['<c-t>'],
-\ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-\ }
+" Allow <cr> to open in a tab -- revert to default
+" let g:ctrlp_prompt_mappings = {
+" \ 'AcceptSelection("e")': ['<c-t>'],
+" \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+" \ }
 " }}}
 
 " Colors: {{{
@@ -277,6 +277,13 @@ let g:lightline#ale#indicator_ok = "\uf00c"
 let g:OmniSharp_popup_position = 'peek'
 let g:OmniSharp_want_snippet = 0
 " let g:OmniSharp_highlight_types = 0
+" \ 'highlight': 'Normal',
+" Note exactly sure _where_ this is used.  Seems to be for autocomplete tasks
+" let g:OmniSharp_popup_options = {
+"     \ 'highlight': 'Pmenu',
+"     \ 'padding': [0, 0, 0, 0],
+"     \ 'border': [1]
+" \}
 
 " let g:OmniSharp_highlight_groups = {
 " \ 'ExcludedCode': 'NonText'
@@ -293,10 +300,15 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
 " FZF: {{{
+" Ag shortcut
 nnoremap <leader>ffs :Ag<CR>
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
 " This is the default extra key bindings
  let g:fzf_action = {
-    \ '<cr>': 'tab split',
+    \ 'ctrl-t': 'tab split',
     \ 'ctrl-x': 'split',
     \ 'ctrl-v': 'vsplit' }
 " }}}
@@ -306,6 +318,7 @@ nnoremap <silent> <leader>ntt :NERDTreeToggle<CR>
 nnoremap <silent> <leader>ntn :NERDTreeFocus<CR>
 nnoremap <silent> <leader>ntf :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
+let g:NERDTreeWinSize=60
 " Start NERDTree and put the cursor back in the other window.
 " autocmd VimEnter * NERDTree | wincmd p
 " Open the existing NERDTree on each new tab.
