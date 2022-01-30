@@ -1,0 +1,22 @@
+" OmniSharp
+Plug 'OmniSharp/omnisharp-vim'
+
+" OmniSharp Debugger
+" Plug 'puremourning/vimspector'
+
+" Mappings, code-actions available flag and statusline integration
+Plug 'nickspoons/vim-sharpenup'
+
+" Autocompletion
+Plug 'prabirshrestha/asyncomplete.vim'
+
+" Auto formatter
+" Plug 'Chiel92/vim-autoformat'
+
+" Editor Config
+" https://github.com/editorconfig/editorconfig-vim
+Plug 'editorconfig/editorconfig-vim'
+
+" Snippet support
+" Plug 'sirver/ultisnips'
+

@@ -1,0 +1,101 @@
+
+" Asyncomplete: {{{
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+" }}}
+
+" Sharpenup: {{{
+" All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
+" :OmniSharpGotoDefinition
+let g:sharpenup_map_prefix = '<leader>os'
+
+let g:sharpenup_statusline_opts = { 'Text': '%s (%p/%P)' }
+let g:sharpenup_statusline_opts.Highlight = 0
+
+augroup OmniSharpIntegrations
+autocmd!
+autocmd User OmniSharpProjectUpdated,OmniSharpReady call lightline#update()
+augroup END
+" }}}
+
+" Vimspector: {{{
+" let g:vimspector_enable_mappings = 'HUMAN'
+" map <F5> :call vimspector#Continue()<CR>
+" map <F9> :call vimspector#ToggleBreakpoint()<CR>
+" }}}
+
+" Lightline: {{{
+"\ 'colorscheme': 'jellybeans',
+"\ 'colorscheme': 'gruvbox',
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\ 'active': {
+\   'left': [
+\     ['mode', 'paste'],
+\     ['gitbranch', 'filename', 'modified'],
+\     ['readonly', 'tagbar']
+\   ],
+\   'right': [
+\     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
+\     ['lineinfo'], ['percent'],
+\     ['fileformat', 'fileencoding', 'filetype', 'sharpenup' ]
+\   ],
+\ },
+\ 'inactive': {
+\   'right': [['lineinfo'], ['percent'], ['sharpenup']],
+\   'left': [
+\     ['mode', 'paste'],
+\     ['readonly', 'filename', 'tagbar', 'modified']
+\   ],
+\ },
+\ 'component': {
+\   'sharpenup': sharpenup#statusline#Build(),
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead',
+\ },
+\ 'component_expand': {
+\   'linter_checking': 'lightline#ale#checking',
+\   'linter_infos': 'lightline#ale#infos',
+\   'linter_warnings': 'lightline#ale#warnings',
+\   'linter_errors': 'lightline#ale#errors',
+\   'linter_ok': 'lightline#ale#ok'
+\  },
+\ 'component_type': {
+\   'linter_checking': 'right',
+\   'linter_infos': 'right',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'linter_ok': 'right'
+\  }
+\}
+
+" OmniSharp: {{{
+" How do display popups -- ex Preview Definition
+let g:OmniSharp_popup_position = 'peek'
+let g:OmniSharp_want_snippet = 0
+" let g:OmniSharp_highlight_types = 0
+" \ 'highlight': 'Normal',
+" Note exactly sure _where_ this is used.  Seems to be for autocomplete tasks
+" let g:OmniSharp_popup_options = {
+"     \ 'highlight': 'Pmenu',
+"     \ 'padding': [0, 0, 0, 0],
+"     \ 'border': [1]
+" \}
+
+" let g:OmniSharp_highlight_groups = {
+" \ 'ExcludedCode': 'NonText'
+" \}
+" Use FZF for symbol lookup
+let g:OmniSharp_selector_ui = 'fzf'
+let g:OmniSharp_selector_findusages = 'fzf'
+" }}}
+
+" AsyncAutocomplete: {{{
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" }}}
+
