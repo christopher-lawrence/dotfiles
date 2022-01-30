@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/akka.yml
 
 name: akka
-root: ~/src/sandbox/launchme-api/
+root: ~/src/sandbox/launchme/
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,7 +46,7 @@ tmux_options: -f ~/.config/tmux/tmux.launchme-api.conf
 
 windows:
   - vim:
-      layout: main-horizontal
+      layout: faaf,320x83,0,0[320x56,0,0,9,320x26,0,57,10]
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
