@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/akka.yml
 
-name: launchme-api
-root: ~/src/sandbox/launchme/launchme-api/
+name: launchme-ui
+root: ~/src/sandbox/launchme/launchmeui/
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,10 +46,11 @@ tmux_options: -f ~/.config/tmux/tmux.launchme-api.conf
 
 windows:
   - vim:
-      layout: faaf,320x83,0,0[320x56,0,0,9,320x26,0,57,10]
+      layout: main-vertical
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - vim -c "cd $PWD"
         - 
+        -

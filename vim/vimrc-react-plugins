@@ -1,0 +1,26 @@
+" Javascript
+Plug 'pangloss/vim-javascript'
+
+" JSON highlighting
+Plug 'elzr/vim-json'
+
+" Typescript
+Plug 'leafgarland/typescript-vim'
+
+" JSX syntax highlighting
+" Plug 'MaxMEllon/vim-jsx-pretty'
+
+" TSX syntax highlighting
+Plug 'peitalin/vim-jsx-typescript'
+
+" Inline styling syntax highlighting
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+" Conquer of Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Reference: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
+" TODO: Move to vim.custom
+" let g:coc_global_extensions = [
+"       \ 'coc-tsserver'
+"   \ ]
