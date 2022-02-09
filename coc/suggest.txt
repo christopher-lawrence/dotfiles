@@ -1,2 +1,0 @@
-ste|style|around
-highligh|highlighting|around
