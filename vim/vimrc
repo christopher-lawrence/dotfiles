@@ -17,6 +17,9 @@ call plug#begin()
 " Fugitive - Git pluging
 Plug 'tpope/vim-fugitive'
 
+" Enables GBrowse in Fugitive
+Plug 'tpope/vim-rhubarb'
+
 " NERDTree - Folder browser
 Plug 'scrooloose/nerdtree'
 
@@ -50,7 +53,7 @@ Plug 'airblade/vim-gitgutter'
 " Spelling for Pascal/camel/etc cases
 Plug 'kamykn/spelunker.vim'
 
-" TODO: Load other plugin files
+" Load other plugin files
 if filereadable(".vim.plugins")
     so .vim.plugins
 endif
@@ -116,10 +119,13 @@ set mouse=a
 set maxmempattern=5000
 
 " Default is 4000ms. This should allow GitGutter to update more frequently
-" set updatetime=250
+set updatetime=250
 
 " lightline fix
 set laststatus=2
+
+" Spell file to git repository
+set spellfile=~/.config/vim/spell/en.utf-8.add
 
 " This is supposed to allow for system clipboard
 " set clipboard=unnamedplus
@@ -339,13 +345,20 @@ set guifont=FiraCodeNerdFontComplete-Regular:h14
 " colorscheme jellybeans
 " colorscheme industry
 " }}}
- 
 
 " Default to Documents folder
 " Use tmuxinator and set values there
 " cd ~/src/Levitate-API
 
 " set nowrap
+
+" TODO Custom highlighting
+" fun! SetMyTodos()
+    " syn match myTodos /\%(FOLLOWUP:\)\|\%(NOTE:\)/
+"     syn match myTodos /\%(FOLLOWUP:\)/
+"     hi link myTodos Todo
+" endfu
+" autocmd bufenter * :call SetMyTodos()
 
 " Load custom vim settings
 if filereadable(".vim.custom")
