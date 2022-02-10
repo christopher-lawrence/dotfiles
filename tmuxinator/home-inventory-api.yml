@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/akka.yml
 
 name: home-inventory-api
-root: ~/src/sandbox/home-inventory/HomeInventoryApi/
+root: ~/src/sandbox/home-inventory/HomeInventory.Api/
 
 # Optional tmux socket
 # socket_name: foo
