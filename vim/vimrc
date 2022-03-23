@@ -54,7 +54,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kamykn/spelunker.vim'
 
 " Load other plugin files
-if filereadable(".vim.plugins")
+if filereadable(".vimrc.plugins")
     so .vimrc.plugins
 endif
 
@@ -361,7 +361,7 @@ set guifont=FiraCodeNerdFontComplete-Regular:h14
 " autocmd bufenter * :call SetMyTodos()
 
 " Load custom vim settings
-if filereadable(".vim.custom")
+if filereadable(".vimrc.custom")
     so .vimrc.custom
 endif
 
