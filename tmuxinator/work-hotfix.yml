@@ -1,6 +1,6 @@
 # /Users/chris/.config/tmuxinator/levitate-api.yml
-name: work
-root: ~/src/Levitate-API/
+name: work-hotfix
+root: ~/src/levitate-api-hotfix/
 
 # Optional tmux socket
 # socket_name: foo
@@ -29,7 +29,7 @@ root: ~/src/Levitate-API/
 # pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
-tmux_options: -f $HOME/.config/tmux/work.conf
+tmux_options: -f $HOME/.config/tmux/work-hotfix.conf
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu

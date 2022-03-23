@@ -55,7 +55,7 @@ Plug 'kamykn/spelunker.vim'
 
 " Load other plugin files
 if filereadable(".vim.plugins")
-    so .vim.plugins
+    so .vimrc.plugins
 endif
 
 " Initialize plugin system
@@ -362,6 +362,6 @@ set guifont=FiraCodeNerdFontComplete-Regular:h14
 
 " Load custom vim settings
 if filereadable(".vim.custom")
-    so .vim.custom
+    so .vimrc.custom
 endif
 

@@ -19,8 +19,3 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Conquer of Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Reference: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-" TODO: Move to vim.custom
-" let g:coc_global_extensions = [
-"       \ 'coc-tsserver'
-"   \ ]
