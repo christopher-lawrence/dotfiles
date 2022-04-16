@@ -53,6 +53,10 @@ Plug 'airblade/vim-gitgutter'
 " Spelling for Pascal/camel/etc cases
 Plug 'kamykn/spelunker.vim'
 
+" Editor Config
+" https://github.com/editorconfig/editorconfig-vim
+Plug 'editorconfig/editorconfig-vim'
+
 " Load other plugin files
 if filereadable(".vimrc.plugins")
     so .vimrc.plugins
@@ -333,6 +337,9 @@ noremap <silent> tt :tabedit<Space>
 noremap <silent> tn :tabnew<Space>
 noremap <silent> tm :tabm<Space> 
 noremap <silent> td :tabclose<CR>
+
+noremap <leader><Left> :-tabmove<cr>
+noremap <leader><Right> :+tabmove<cr>
 " Go to last active tab 
 au TabLeave * let g:lasttab = tabpagenr()
 nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
