@@ -183,6 +183,7 @@ let g:lightline = {
 " CtrlP: {{{
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'results:100' " overcome limit imposed by max height
+let g:ctrlp_mruf_relative = 1 " set mru to current working directory
 
 " Allow <cr> to open in a tab -- revert to default
 " let g:ctrlp_prompt_mappings = {
