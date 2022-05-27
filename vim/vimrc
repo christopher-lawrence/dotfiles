@@ -192,25 +192,6 @@ let g:ctrlp_mruf_relative = 1 " set mru to current working directory
 " \ }
 " }}}
 
-" Colors: {{{
-" TODO: WTF does this do??
-" augroup ColorschemePreferences
-"   autocmd!
-"   " These preferences clear some gruvbox background colours, allowing transparency
-"   autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
-"   autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
-"   autocmd ColorScheme * highlight Todo       ctermbg=NONE guibg=NONE
-"  " Link ALE sign highlights to similar equivalents without background colours
-"   autocmd ColorScheme * highlight link ALEErrorSign   WarningMsg
-"   autocmd ColorScheme * highlight link ALEWarningSign ModeMsg
-"   autocmd ColorScheme * highlight link ALEInfoSign    Identifier
-" augroup END
-
-set background=dark
-" colorscheme gruvbox
-colorscheme nord
-" }}}
-
 " ALE: {{{
 let g:ale_sign_error = '!'
 let g:ale_sign_warning = '•'
@@ -222,13 +203,6 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 
 nmap <silent> <leader>aj :ALENextWrap<cr>
 nmap <silent> <leader>ak :ALEPreviousWrap<cr>
-" }}}
-
-" Autoformat: {{{
-" let g:formatterpath = ['/usr/local/Cellar/astyle/3.1/bin']
-" let g:formatdef_cs_format = '"astyle --mode=cs --style=kr --indent-namespaces -pcH".(&expandtab ? "s".shiftwidth() : "t")'
-" let g:formatters_cs = ['cs_format']
-" }}}
 
 " Use unicode chars for ale indicators in the statusline
 let g:lightline#ale#indicator_checking = "\uf110"
@@ -236,6 +210,12 @@ let g:lightline#ale#indicator_infos = "\uf129"
 let g:lightline#ale#indicator_warnings = "\uf071"
 let g:lightline#ale#indicator_errors = "\uf05e"
 let g:lightline#ale#indicator_ok = "\uf00c"
+" }}}
+
+" Autoformat: {{{
+" let g:formatterpath = ['/usr/local/Cellar/astyle/3.1/bin']
+" let g:formatdef_cs_format = '"astyle --mode=cs --style=kr --indent-namespaces -pcH".(&expandtab ? "s".shiftwidth() : "t")'
+" let g:formatters_cs = ['cs_format']
 " }}}
 
 " FZF: {{{
@@ -347,11 +327,30 @@ nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 " }}}
 
+" Colors: {{{
+" TODO: WTF does this do??
+" augroup ColorschemePreferences
+"   autocmd!
+"   " These preferences clear some gruvbox background colours, allowing transparency
+"   autocmd ColorScheme * highlight Normal     ctermbg=NONE guibg=NONE
+"   autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
+"   autocmd ColorScheme * highlight Todo       ctermbg=NONE guibg=NONE
+"  " Link ALE sign highlights to similar equivalents without background colours
+"   autocmd ColorScheme * highlight link ALEErrorSign   WarningMsg
+"   autocmd ColorScheme * highlight link ALEWarningSign ModeMsg
+"   autocmd ColorScheme * highlight link ALEInfoSign    Identifier
+" augroup END
+" }}}
+
 " Theme: {{{
 " set guifont=Lucida\ Console:h11
+" NOTE: For terminal/tmux vim the terminal font will be what is used!
 set guifont=FiraCodeNerdFontComplete-Regular:h14
 " colorscheme jellybeans
 " colorscheme industry
+" colorscheme gruvbox
+colorscheme nord
+set background=dark
 " }}}
 
 " Default to Documents folder
