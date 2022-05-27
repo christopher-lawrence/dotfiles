@@ -3,17 +3,24 @@ set shiftwidth=2
 set tabstop=2
 
 " set filetypes as typescriptreact
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+autocmd BufEnter *.tsx set filetype=typescriptreact
+autocmd BufEnter *.jsx set filetype=javascriptreact
 
 " }}}
 
 " ALE: {{{
 " Add fixers for javascript
-let g:ale_fixers = {
-\  'typescript': ['prettier', 'eslint'],
-\  'typescriptreact': ['prettier', 'eslint']
-\ }
-let g:ale_fix_on_save = 1
+" let g:ale_fixers = {
+" \  'typescript': ['prettier', 'eslint'],
+" \  'typescriptreact': ['prettier', 'eslint']
+" \ }
+" This gets really annoying
+let g:ale_fix_on_save = 0
+
+nmap <leader>= ALEFix
+
+" Disable so COC controls ALE
+let g:ale_disable_lsp = 1
 " }}}
 
 " CTRL+P {{{
@@ -31,26 +38,35 @@ let NERDTreeIgnore = ['node_modules']
 " Reference: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
 let g:coc_global_extensions = [
       \ 'coc-tsserver'
-  \ ]
+      \ ]
+
+" Conditionally add pretties and eslint
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-    \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " GoTo code navigation.
 nmap <silent> <leader>gd <Plug>(coc-definition)
@@ -75,4 +91,13 @@ nmap <leader>cf  <Plug>(coc-fix-current)
 
 " Run the Code Lens action on the current line.
 nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Trigger tooltip hover
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+" Diagnostics list
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 " }}}
