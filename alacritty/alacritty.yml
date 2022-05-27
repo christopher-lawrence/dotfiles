@@ -20,7 +20,7 @@ font:
   # UI for powerline & tmux bottom bar.
   normal:
     # Font name
-    family: FiraCode Nerd Font
+    family: FiraCode Nerd Font Mono
     # Font face
     style: Regular
 
@@ -31,7 +31,7 @@ font:
 
   # Italic font face
   italic:
-    family: FiraCode Nerd Font
+    family: FiraCode Nerd Font Mono
     style: Italic
 
   # Bold italic font face
@@ -39,7 +39,7 @@ font:
   # italic & it just works. You may specifiy the bold italic version if it exists
   # for your font
   bold_italic:
-    family: FiraCode Nerd Font
+    family: FiraCode Nerd Font Mono
     style: Italic
 
   # Font size
