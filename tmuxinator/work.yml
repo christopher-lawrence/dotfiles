@@ -53,11 +53,11 @@ windows:
       # synchronize: after
       panes:
         - vim -c "cd $PWD"
-        - api-build.sh
+        - 
         - cd tests/LevitateAPI.UnitTests/
   - ui/misc:
       layout: main-vertical
       panes:
-        - cd ../Levitate-FrontEnd/ && git pull && yarn start:localtest
+        - cd ../Levitate-FrontEnd/ && git pull
         - # blank pane
   #- server: api-build.sh
