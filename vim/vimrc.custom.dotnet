@@ -91,6 +91,10 @@ let g:OmniSharp_want_snippet = 0
 " Use FZF for symbol lookup
 let g:OmniSharp_selector_ui = 'fzf'
 let g:OmniSharp_selector_findusages = 'fzf'
+
+" From version 1.38.0 of OmniSharp-roslyn, a dotnet native net6.0 server
+" version is available.
+let g:OmniSharp_server_use_net6 = 1
 " }}}
 
 " AsyncAutocomplete: {{{
