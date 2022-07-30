@@ -1,6 +1,7 @@
-# /Users/chris/.config/tmuxinator/levitate-api.yml
+# /Users/chris/.config/tmuxinator/home-inventory-ui.yml
+
 name: work-hotfix
-root: ~/src/levitate-api-hotfix/
+root: ~/src/sp-desktop-hotfix/
 
 # Optional tmux socket
 # socket_name: foo
@@ -29,13 +30,13 @@ root: ~/src/levitate-api-hotfix/
 # pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
-tmux_options: -f $HOME/.config/tmux/work-hotfix.conf
+tmux_options: -f ~/.config/tmux/tmux.launchme-api.conf
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: api
+# startup_window: editor
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 # startup_pane: 1
@@ -44,20 +45,12 @@ startup_window: api
 # attach: false
 
 windows:
-  - api:
-      # layout: main-horizontal
-      layout: d612,320x83,0,0[320x54,0,0,0,320x28,0,55{159x28,0,55,2,160x28,160,55,3}]
-      # layout: daee,320x83,0,0[320x59,0,0,0,320x23,0,60{159x23,0,60,2,160x23,160,60,3}]
+  - vim:
+      layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - vim -c "cd $PWD"
-        - api-build.sh
-        - cd tests/LevitateAPI.UnitTests/
-  - ui/misc:
-      layout: main-vertical
-      panes:
-        - cd ../Levitate-FrontEnd/ && git pull && yarn start:localtest
-        - # blank pane
-  #- server: api-build.sh
+        - 
+        -

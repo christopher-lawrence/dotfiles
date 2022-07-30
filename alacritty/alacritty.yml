@@ -26,7 +26,7 @@ font:
 
   # Bold font face
   bold:
-    family: FiraCode Nerd Font
+    family: FiraCode Nerd Font Mono
     style: Bold
 
   # Italic font face

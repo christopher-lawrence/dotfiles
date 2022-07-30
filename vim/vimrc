@@ -286,11 +286,7 @@ set ttyfast
 " }}}
 
 " Build: {{{
-" Add scripts to runtime path
-" TODO - fix this?
-" set rtp^=~/.scripts
-" TODO - can this run in a separate tmux pane?
-" nnoremap <F6> :!~/.scripts/api-build.sh<CR>
+" This is defined in the tmuxinator config
 " }}}
 
 " Buffers: {{{
