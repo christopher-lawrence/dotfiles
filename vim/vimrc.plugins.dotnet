@@ -20,3 +20,9 @@ Plug 'editorconfig/editorconfig-vim'
 " Snippet support
 " Plug 'sirver/ultisnips'
 
+Plug 'scrooloose/nerdtree'                          " NERDTree - Folder browser
+Plug 'Xuyuanp/nerdtree-git-plugin'                  " NERDTree git plugin
+Plug 'ctrlpvim/ctrlp.vim'                           " CtrlP - Fuzzy search for files, buffers, MRU, etc
+Plug 'dense-analysis/ale'                           " Linting/error highlighting
+Plug 'maximbaz/lightline-ale'
+Plug 'airblade/vim-gitgutter'                       " GitGutter

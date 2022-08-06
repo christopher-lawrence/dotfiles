@@ -1,21 +1,11 @@
-" Javascript
-Plug 'pangloss/vim-javascript'
-
-" JSON highlighting
-Plug 'elzr/vim-json'
-
-" Typescript
-Plug 'leafgarland/typescript-vim'
-
-" JSX syntax highlighting
-" Plug 'MaxMEllon/vim-jsx-pretty'
-
-" TSX syntax highlighting
-Plug 'peitalin/vim-jsx-typescript'
-
-" Inline styling syntax highlighting
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" Conquer of Completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'pangloss/vim-javascript'                                          " Javascript
+Plug 'elzr/vim-json'                                                    " JSON highlighting
+Plug 'leafgarland/typescript-vim'                                       " Typescript
+Plug 'MaxMEllon/vim-jsx-pretty'                                       " JSX syntax highlighting
+Plug 'peitalin/vim-jsx-typescript'                                      " TSX syntax highlighting
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }    " Inline styling syntax highlighting
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                         " Conquer of Completion
+Plug 'mhinz/vim-startify'                                               " cool start up screen
+Plug 'Yggdroot/indentLine'                                              " show indentation lines
+Plug 'psliwka/vim-smoothie'                                             " some very smooth ass scrolling
+Plug 'ryanoasis/vim-devicons'                                           " pretty icons everywhere
