@@ -30,7 +30,7 @@ root: ~/src/sp-desktop-hotfix/
 # pre_window: rbenv shell 2.0.0-p247
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
-tmux_options: -f ~/.config/tmux/tmux.launchme-api.conf
+tmux_options: -f ~/.config/tmux/tmux.conf
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
@@ -51,6 +51,6 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - vim -c "cd $PWD"
+        - nvim -c "cd $PWD"
         - 
         -
