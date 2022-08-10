@@ -100,8 +100,12 @@ nnoremap <leader>K :call CocAction('doHover')<CR>
 " Diagnostics list
 nnoremap <leader>cd :<C-u>CocList diagnostics<cr>
 " Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent><leader>[g <Plug>(coc-diagnostic-prev)
+nmap <silent><leader>]g <Plug>(coc-diagnostic-next)
+
+nmap <leader>gp <Plug>(coc-git-chunkinfo)
+nmap <leader>gj <Plug>(coc-git-nextchunk)
+nmap <leader>gk <Plug>(coc-git-prevchunk)
 
 " }}}
 "
@@ -161,7 +165,7 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 let g:fzf_tags_command = 'ctags -R'
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build/**' --glob '!.dart_tool/**' --glob '!.idea' --glob '!node_modules'"
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!.dart_tool/**' --glob '!.idea' --glob '!node_modules'"
 
 " indentLine
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
@@ -170,3 +174,34 @@ let g:indentLine_setConceal = 0                         " actually fix the annoy
 let g:indentLine_fileTypeExclude = ['startify']
 
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+
+" Lightline: {{{
+let g:lightline = {
+\ 'colorscheme': 'nord',
+\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" },
+\ 'active': {
+\   'left': [
+\     ['mode', 'paste'],
+\     ['gitbranch', 'filename', 'modified'],
+\     ['readonly', 'tagbar']
+\   ],
+\   'right': [
+\     ['lineinfo'], ['percent'], ['cocstatus'],
+\     ['fileformat', 'fileencoding', 'filetype' ]
+\   ],
+\ },
+\ 'inactive': {
+\   'right': [['lineinfo'], ['percent'], ['sharpenup']],
+\   'left': [
+\     ['mode', 'paste'],
+\     ['readonly', 'filename', 'tagbar', 'modified']
+\   ],
+\ },
+\ 'component_function': {
+\   'gitbranch': 'FugitiveHead',
+\   'cocstatus': 'coc#status',
+\   'currentFunction': 'CocCurrentFunction'
+\ },
+\}
+

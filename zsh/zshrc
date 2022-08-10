@@ -85,7 +85,7 @@ export PATH="$PATH:$HOME/.scripts"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -99,10 +99,9 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vpn="vpn.sh"
+alias zshconfig="nvim ~/.zshrc"
 alias mux="tmuxinator"
+alias nv="nvim"
 
-export PATH="/usr/local/opt/node@14/bin:$PATH"
+# export PATH="/usr/local/opt/node@14/bin:$PATH"
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh

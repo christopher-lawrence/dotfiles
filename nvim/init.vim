@@ -45,6 +45,7 @@ call plug#end()
 
 let mapleader = "\<SPACE>"
 
+set termguicolors                                       " Opaque Background
 set expandtab
 set shiftround
 set shiftwidth=4
@@ -79,8 +80,6 @@ set spellfile=~/.config/vim/spell/en.utf-8.add
 " }}}
 
 " Lightline: {{{
-"\ 'colorscheme': 'jellybeans',
-"\ 'colorscheme': 'gruvbox',
 let g:lightline = {
 \ 'colorscheme': 'nord',
 \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
