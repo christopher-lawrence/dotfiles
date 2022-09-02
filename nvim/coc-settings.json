@@ -1,8 +1,9 @@
 {
   // normal settings
-  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "snippet.statusText": "Ⓢ ",
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
+    "javascriptreact",
     "html",
     "css",
     "json",

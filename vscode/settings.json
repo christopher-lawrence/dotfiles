@@ -7,5 +7,10 @@
   "githubPullRequests.terminalLinksHandler": "github",
   "editor.lineNumbers": "relative",
   "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-  "workbench.preferredDarkColorTheme": "Nord"
+  "workbench.preferredDarkColorTheme": "Nord",
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "security.workspace.trust.untrustedFiles": "open",
+  "tabnine.experimentalAutoImports": true
 }

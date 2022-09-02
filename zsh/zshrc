@@ -101,7 +101,16 @@ export EDITOR='nvim'
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias mux="tmuxinator"
-alias nv="nvim"
+alias v="nvim"
 
-# export PATH="/usr/local/opt/node@14/bin:$PATH"
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+PATH="/Users/chris/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/chris/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/chris/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/chris/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/chris/perl5"; export PERL_MM_OPT;
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"

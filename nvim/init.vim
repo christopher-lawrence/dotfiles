@@ -62,6 +62,8 @@ set incsearch ignorecase smartcase hlsearch             " Highlight search
 set number relativenumber                               " Line numbers -- hybrid
 set ruler                                               " Position in file -- bottom right
 set signcolumn=yes
+set showtabline=2                                       " always show tabline
+set emoji
 
 " Enable mouse for all modes
 set mouse=a
@@ -120,6 +122,7 @@ let g:fzf_buffers_jump = 1
 " (fugitive) Git: {{{
 nnoremap <silent> <leader>g :G<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gb :Git blame<CR>
 nnoremap <silent> <leader>gd :Gdiffsplit<CR>
 " Select buffer 3 -- on the right -- during merge conflic / diff view
 nmap <leader>gj :diffget //3<CR>
@@ -186,7 +189,7 @@ nnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 vnoremap <silent> <c-l> :exe "tabn ".g:lasttab<cr>
 " }}}
 
-nmap <leader>r :so ~/.vimrc<CR>     " reload vimrc
+nmap <leader>r :so ~/.config/nvim/init.vim<CR>     " reload vimrc
 
 " Load custom vim settings
 if filereadable(".vimrc.custom")
