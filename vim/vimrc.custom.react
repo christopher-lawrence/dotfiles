@@ -1,7 +1,7 @@
 " VIMRC Overrides: {{{
 
 " required by coc
-set encoding=utf-8              " not needed for neovim
+" set encoding=utf-8              " not needed for neovim
 set hidden
 set nobackup
 set nowritebackup
@@ -20,11 +20,11 @@ set scrolljump=5
 set lazyredraw
 set redrawtime=10000
 set synmaxcol=180
-set re=1
+set re=0
 
 " set filetypes as typescriptreact
-autocmd BufEnter *.tsx set filetype=typescriptreact
-autocmd BufEnter *.jsx set filetype=javascriptreact
+" autocmd BufEnter *.tsx set filetype=typescriptreact
+" autocmd BufEnter *.jsx set filetype=javascriptreact
 
 " }}}
 
@@ -41,7 +41,6 @@ let g:coc_global_extensions = [
             \'coc-yaml',
             \'coc-prettier',
             \'coc-xml',
-            \'coc-git',
             \'coc-marketplace',
             \'coc-sh',
             \'coc-jest'
@@ -79,8 +78,8 @@ nmap <leader>cf  <Plug>(coc-format-selected)
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>ca  <Plug>(coc-codeaction-line)
-nmap <leader>ca  <Plug>(coc-codeaction-selected)
+xmap <leader>cc <Plug>(coc-codeaction-line)
+nmap <leader>cc <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ca  <Plug>(coc-codeaction)
@@ -164,16 +163,24 @@ vmap <F1> <plug>(fzf-maps-x)
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
 let g:fzf_tags_command = 'ctags -R'
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+" set preview theme
+let $BAT_THEME = "Nord"
+
+let $FZF_DEFAULT_OPTS = "--layout=reverse --inline-info"
 let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!.dart_tool/**' --glob '!.idea' --glob '!node_modules'"
 
 " indentLine
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
-let g:indentLine_setColors = 0
-let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+let g:indentLine_setColors = 1
+let g:indentLine_setConceal = 1                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
 
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
+
+" Vimspector: {{{
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+nnoremap <leader>dl :call vimspector#Launch()<CR>
+" }}}
 
 " Lightline: {{{
 let g:lightline = {
