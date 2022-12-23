@@ -43,7 +43,7 @@ font:
     style: Italic
 
   # Font size
-  size: 14.0
+  size: 16.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing
@@ -63,7 +63,7 @@ font:
    # y: 7
 
   # Better font rendering for mac
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
 # selection:
   # semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -86,6 +86,9 @@ key_bindings:
   - { key: RBracket, mods: Command, chars: "\x5c\x6e" }
   # ctrl-^ doesn't work in some terminals like alacritty
   - { key: Key6, mods: Control, chars: "\x1e" }
+
+window:
+  opacity: 0.9
 
 # Colors (NORD)
 
@@ -117,9 +120,9 @@ colors:
     matches:
       foreground: CellBackground
       background: '#88c0d0'
-    bar:
-      background: '#434c5e'
-      foreground: '#d8dee9'
+  footer_bar:
+    background: '#434c5e'
+    foreground: '#d8dee9'
   normal:
     black: '#3b4252'
     red: '#bf616a'

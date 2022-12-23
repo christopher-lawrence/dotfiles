@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/home-inventory-ui.yml
 
-name: sp-auth
-root: ~/src/sp-auth/
+name: sp-website
+root: ~/src/sp-website/
 
 # Optional tmux socket
 # socket_name: foo

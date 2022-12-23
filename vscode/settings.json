@@ -1,16 +1,45 @@
 {
-  "workbench.colorTheme": "Nord",
-  "editor.fontSize": 14,
-  "editor.fontFamily": "'FiraCode Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
-  "editor.tabCompletion": "on",
-  "githubPullRequests.terminalLinksHandler": "github",
-  "editor.lineNumbers": "relative",
-  "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-  "workbench.preferredDarkColorTheme": "Nord",
-  "terminal.external.osxExec": "iTerm.app",
-  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-  "terminal.integrated.fontSize": 14,
-  "security.workspace.trust.untrustedFiles": "open",
-  "tabnine.experimentalAutoImports": true
+    "workbench.colorTheme": "Nord",
+    "editor.fontFamily": "'FiraCode Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.tabCompletion": "on",
+    "githubPullRequests.terminalLinksHandler": "github",
+    "editor.lineNumbers": "relative",
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "workbench.preferredDarkColorTheme": "Nord",
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+    "terminal.integrated.fontSize": 14,
+    "security.workspace.trust.untrustedFiles": "open",
+    "tabnine.experimentalAutoImports": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "cSpell.userWords": [
+        "BSON",
+        "Bugsnag",
+        "Fastify",
+        "magiclink",
+        "stashpad",
+        "Stytch"
+    ],
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.fontSize": 14,
+    "window.zoomLevel": 1,
+    "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "githubPullRequests.pullBranch": "never"
 }

@@ -52,5 +52,5 @@ windows:
       # synchronize: after
       layout: main-vertical
       panes:
-        - nvim -c "cd $PWD"
+        - nvim .
         - 
