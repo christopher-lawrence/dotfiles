@@ -7,3 +7,8 @@ plugged/
 autoload/
 
 plugins/
+
+stripe/
+
+# What is this?
+memos.json

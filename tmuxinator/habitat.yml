@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/home-inventory-ui.yml
 
-name: home-inventory-ui
-root: ~/src/sandbox/home-inventory/homeInventoryUI/
+name: habitat
+root: ~/src/habitat/
 
 # Optional tmux socket
 # socket_name: foo
@@ -46,11 +46,11 @@ tmux_options: -f ~/.config/tmux/tmux.conf
 
 windows:
   - vim:
-      layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]} 
+      layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - nvim -c "cd $PWD"
-        - 
+        -
         -
