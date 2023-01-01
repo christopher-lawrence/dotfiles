@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/nord-vim",
     url = "https://github.com/arcticicestudio/nord-vim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -164,6 +169,11 @@ _G.packer_plugins = {
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -188,6 +198,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/chris/.local/share/nvim/site/pack/packer/start/vim-gitgutter",
     url = "https://github.com/airblade/vim-gitgutter"
+  },
+  ["vim-smoothie"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/vim-smoothie",
+    url = "https://github.com/psliwka/vim-smoothie"
+  },
+  ["vscode.nvim"] = {
+    loaded = true,
+    path = "/Users/chris/.local/share/nvim/site/pack/packer/start/vscode.nvim",
+    url = "https://github.com/Mofiqul/vscode.nvim"
   }
 }
 
