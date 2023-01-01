@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "Nord",
     "editor.fontFamily": "'FiraCode Nerd Font', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": true,
     "editor.tabCompletion": "on",
@@ -41,5 +40,6 @@
     "prettier.tabWidth": 4,
     "prettier.semi": false,
     "prettier.singleQuote": true,
-    "githubPullRequests.pullBranch": "never"
+    "githubPullRequests.pullBranch": "never",
+    "workbench.colorTheme": "Nord"
 }
