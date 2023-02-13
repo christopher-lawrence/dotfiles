@@ -19,6 +19,8 @@ lsp.configure('sumneko_lua', {
     }
 })
 
+-- vim.lsp.handlers["textDocument/codeAction"] = 
+
 -- https://github.com/typescript-language-server/typescript-language-server
 lsp.configure('tsserver', {
   -- init_options = {
@@ -120,13 +122,15 @@ lsp.on_attach(function(client, bufnr)
   -- end
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  -- vim.keymap.set("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>", opts)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
   vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
   vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
   vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
+  -- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
+  vim.keymap.set("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")

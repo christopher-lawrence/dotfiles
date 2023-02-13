@@ -40,3 +40,11 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+--
+-- Buffers
+vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
+
+-- Trouble
+vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>",
+  {silent = true, noremap = true}
+)

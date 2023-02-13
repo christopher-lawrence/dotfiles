@@ -2,7 +2,7 @@ local M = {}
 
 local null_ls = require('null-ls')
 
-print('null-ls setup')
+-- print('null-ls setup')
 
 local formatting = null_ls.builtins.formatting
 

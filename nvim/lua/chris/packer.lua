@@ -58,4 +58,29 @@ return require('packer').startup(function(use)
 
   use { 'airblade/vim-gitgutter' }
 
+  -- Lua
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  -- use({
+  --   "glepnir/lspsaga.nvim",
+  --   branch = "main",
+  --   config = function()
+  --     local saga = require("lspsaga")
+
+  --     saga.init_lsp_saga({
+  --       -- your configuration
+  --     })
+  --   end,
+  -- })
+
 end)

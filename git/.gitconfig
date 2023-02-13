@@ -4,7 +4,7 @@
 	branch = false
 	stash = false
 [user]
-	name = "Chris Lawrence"
+	name = Christopher Lawrence
 	email = "chrislawrence05@gmail.com"
 [safe]
 	directory = /Users/chris/actions-runner/_work/sp-desktop/sp-desktop
@@ -93,3 +93,8 @@
 	directory = /Users/chris/actions-runner/_work/sp-desktop/sp-desktop
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

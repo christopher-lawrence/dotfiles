@@ -118,6 +118,7 @@ PERL_MB_OPT="--install_base \"/Users/chris/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/chris/perl5"; export PERL_MM_OPT;
 export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
+export PATH="$PATH:~/.config/git/scripts/"
 
 # Load rbenv automatically by appending--ruby env switcher
 eval "$(rbenv init - zsh)"
