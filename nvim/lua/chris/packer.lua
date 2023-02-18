@@ -20,11 +20,22 @@ return require('packer').startup(function(use)
   use 'ellisonleao/gruvbox.nvim'
   use 'Mofiqul/vscode.nvim'
 
+  -- some kind of tree parser
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
+  -- amazing file switcher
   use('ThePrimeagen/harpoon')
+
+  -- undo pane
   use('mbbill/undotree')
+
+  -- git
   use('tpope/vim-fugitive')
+
+  -- smooth scrolling
   use('psliwka/vim-smoothie')
+
+  -- lsp-zero
   use{
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -47,6 +58,7 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- null-ls lsp
   use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = {
@@ -54,9 +66,17 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- Lua functions, some plugins require it
   use {'nvim-lua/plenary.nvim'}
 
-  use { 'airblade/vim-gitgutter' }
+  -- git icons in the gutter
+  -- use { 'airblade/vim-gitgutter' }
+
+  -- git signs: testing this out. seems very nice
+  use {
+  'lewis6991/gitsigns.nvim',
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+  }
 
   -- Lua
   use {
