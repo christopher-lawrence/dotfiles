@@ -17,6 +17,9 @@ lsp.configure('lua_ls', {
             },
             codeLens = {
               enabled = true
+            },
+            hint = {
+              enable = true
             }
         }
     }
@@ -36,6 +39,24 @@ lsp.configure('tsserver', {
   on_attach = function ()
     print('tsserver attached')
   end,
+})
+
+lsp.configure('omnisharp', {
+  on_attach = function ()
+    print('omnisharp attached')
+  end
+})
+
+
+lsp.configure('pyright', {
+  settings = {
+    python = {
+      pythonPath = '/opt/homebrew/bin/python3.9'
+    }
+  },
+  on_attach = function ()
+    print('pyright attached')
+  end
 })
 
 local cmp_kinds = {
@@ -135,7 +156,7 @@ lsp.on_attach(function(client, bufnr)
   -- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
   vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")
 end)
 
@@ -152,4 +173,3 @@ vim.diagnostic.config({
   -- severity_sort = false,
   -- float = true,
 })
-
