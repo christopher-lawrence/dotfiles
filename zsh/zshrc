@@ -106,6 +106,7 @@ export EDITOR='nvim'
 alias zshconfig="nvim ~/.zshrc"
 alias mux="tmuxinator"
 alias v="nvim"
+alias python="/opt/homebrew/bin/python3"
 
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
