@@ -41,5 +41,13 @@
     "prettier.semi": false,
     "prettier.singleQuote": true,
     "githubPullRequests.pullBranch": "never",
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "python.pythonPath": "/opt/homebrew/bin/python3.9",
+    "playwright.env": {
+        "STASHPAD_ENV": "testing"
+    },
+    "playwright.reuseBrowser": false
 }
