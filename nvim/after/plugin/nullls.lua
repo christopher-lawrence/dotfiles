@@ -2,13 +2,34 @@ local M = {}
 
 local null_ls = require('null-ls')
 
--- print('null-ls setup')
+-- A function to recursively print the contents of a table, indenting each level with '--'
+local function tprint (table, tabs)
+  if (type(table) == 'table') then
+    for key, value in pairs(table) do
+      print(tabs, key, type(value))
+
+      if (type(value) == 'table') then
+        tprint(value, tabs .. '--')
+      elseif (type(value) ~= "table" and type(value) ~= "function") then
+        print(tabs, value)
+      end
+    end
+  else
+    print(tabs, '**not a table**')
+    print(tabs, table, type(table))
+  end
+end
 
 local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 
 M.sources = {
-  formatting.prettierd
+  formatting.prettierd,
+  diagnostics.pylint.with({
+    prefer_local="venv/bin",
+  })
 }
+
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 M.config = {
@@ -26,10 +47,14 @@ M.config = {
                 end,
             })
         end
+        print('on_attach:client')
+        tprint(client, "")
     end,
   sources = M.sources
 }
 
+-- print('diagnostics.pylint')
+-- tprint(diagnostics.pylint, "")
 
 -- null_ls.setup({
 --   debug = true,
