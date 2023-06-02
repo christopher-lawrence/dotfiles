@@ -13,3 +13,5 @@ stripe/
 
 # What is this?
 memos.json
+
+.DS_Store
