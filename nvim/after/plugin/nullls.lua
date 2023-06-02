@@ -47,8 +47,8 @@ M.config = {
                 end,
             })
         end
-        print('on_attach:client')
-        tprint(client, "")
+        -- print('on_attach:client')
+        -- tprint(client, "")
     end,
   sources = M.sources
 }

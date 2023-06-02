@@ -1,4 +1,8 @@
-# /Users/chris/.config/tmuxinator/locallibrary.yml
+# /Users/chris/.config/tmuxinator/python_local.yml
+
+# Usage:
+# - copy this file to a python project as .tmuxinator.yml
+# - start with `mux local`
 
 name: python_local
 root: ./
@@ -52,6 +56,6 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - nvim .
-        -
-        -
+        - source venv/bin/activate && nvim .
+        - source venv/bin/activate
+        - source venv/bin/activate
