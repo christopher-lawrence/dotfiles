@@ -36,7 +36,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.fontSize": 14,
-    "window.zoomLevel": 1,
     "prettier.tabWidth": 4,
     "prettier.semi": false,
     "prettier.singleQuote": true,
@@ -49,5 +48,6 @@
     "playwright.env": {
         "STASHPAD_ENV": "testing"
     },
-    "playwright.reuseBrowser": false
+    "playwright.reuseBrowser": false,
+    "window.zoomLevel": 1
 }

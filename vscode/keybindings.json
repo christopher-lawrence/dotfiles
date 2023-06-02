@@ -32,6 +32,7 @@
     },
     {
         "key": "shift+k",
-        "command": "editor.action.showDefinitionPreviewHover"
+        "command": "editor.action.showDefinitionPreviewHover",
+        "when": "textInputFocus && editorReadonly"
     }
 ]
