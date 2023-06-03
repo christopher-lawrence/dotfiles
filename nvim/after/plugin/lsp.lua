@@ -51,7 +51,7 @@ lsp.configure('omnisharp', {
 lsp.configure('pyright', {
   settings = {
     python = {
-      pythonPath = '/opt/homebrew/bin/python3.9'
+      -- pythonPath = '/opt/homebrew/bin/python3.9'
     }
   },
   on_attach = function ()
