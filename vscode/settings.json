@@ -19,6 +19,7 @@
         "BSON",
         "Bugsnag",
         "Fastify",
+        "luxon",
         "magiclink",
         "stashpad",
         "Stytch"
@@ -44,10 +45,11 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "python.pythonPath": "/opt/homebrew/bin/python3.9",
     "playwright.env": {
         "STASHPAD_ENV": "testing"
     },
     "playwright.reuseBrowser": false,
-    "window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "python.venvPath": "/Users/chris/src/sandbox/python/django_tut/venv",
+    "python.pythonPath": "/Users/chris/src/sandbox/python/django_tut/venv/bin/python"
 }

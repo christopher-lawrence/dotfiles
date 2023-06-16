@@ -91,6 +91,8 @@ return require('packer').startup(function(use)
     end
   }
 
+  use{'vimwiki/vimwiki'}
+
   -- use({
   --   "glepnir/lspsaga.nvim",
   --   branch = "main",

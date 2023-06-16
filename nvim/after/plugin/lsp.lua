@@ -3,9 +3,11 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-	'tsserver',
-	'eslint',
 	'lua_ls',
+	'tsserver',
+  'omnisharp',
+	'eslint',
+  'pyright',
 })
 
 -- Fix Undefined global 'vim'
@@ -49,8 +51,14 @@ lsp.configure('omnisharp', {
 
 
 lsp.configure('pyright', {
+  filetypes = { 'python' },
   settings = {
     python = {
+      analysis = {
+        diagnosticMode = 'workspace'
+      },
+      venv = "venv",
+      pythonPath = "python3"
       -- pythonPath = '/opt/homebrew/bin/python3.9'
     }
   },
