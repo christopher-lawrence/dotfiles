@@ -15,3 +15,5 @@ stripe/
 memos.json
 
 .DS_Store
+
+packer_compiled.lua
