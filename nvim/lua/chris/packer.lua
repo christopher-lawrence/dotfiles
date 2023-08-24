@@ -10,9 +10,9 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     -- or                            , branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- themes
   use 'arcticicestudio/nord-vim'
@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
   use 'Mofiqul/vscode.nvim'
 
   -- some kind of tree parser
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
   -- amazing file switcher
   use('ThePrimeagen/harpoon')
@@ -36,45 +36,40 @@ return require('packer').startup(function(use)
   use('psliwka/vim-smoothie')
 
   -- lsp-zero
-  use{
+  use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'neovim/nvim-lspconfig' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      { 'hrsh7th/nvim-cmp' },
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'hrsh7th/cmp-nvim-lua' },
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      { 'L3MON4D3/LuaSnip' },
+      { 'rafamadriz/friendly-snippets' },
     }
   }
 
-  -- null-ls lsp
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = {
-      "nvim-lua/plenary.nvim"
-    }
-  }
+  -- used by formatters installed with Mason
+  use { 'mhartington/formatter.nvim' }
 
   -- Lua functions, some plugins require it
-  use {'nvim-lua/plenary.nvim'}
+  use { 'nvim-lua/plenary.nvim' }
 
   -- git icons in the gutter
   -- use { 'airblade/vim-gitgutter' }
 
   -- git signs: testing this out. seems very nice
   use {
-  'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim',
     -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
   }
 
@@ -91,7 +86,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use{'vimwiki/vimwiki'}
+  use { 'vimwiki/vimwiki' }
 
   -- use({
   --   "glepnir/lspsaga.nvim",
@@ -104,5 +99,4 @@ return require('packer').startup(function(use)
   --     })
   --   end,
   -- })
-
 end)

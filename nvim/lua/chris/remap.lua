@@ -46,5 +46,8 @@ vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
 
 -- Trouble
 vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>",
-  {silent = true, noremap = true}
+  { silent = true, noremap = true }
 )
+
+-- Formatter
+vim.keymap.set("n", "<leader>f", ":Format<cr>")
