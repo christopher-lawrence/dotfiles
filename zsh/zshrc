@@ -106,7 +106,7 @@ export EDITOR='nvim'
 alias zshconfig="nvim ~/.zshrc"
 alias mux="tmuxinator"
 alias v="nvim"
-alias python="/opt/homebrew/bin/python3"
+# alias python="/usr/bin/python3"
 
 # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -117,9 +117,25 @@ PERL5LIB="/Users/chris/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 PERL_LOCAL_LIB_ROOT="/Users/chris/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/chris/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/chris/perl5"; export PERL_MM_OPT;
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 export PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:$PATH"
 export PATH="$PATH:~/.config/git/scripts/"
+export PATH="$PATH:/usr/local/sbin"
 
 # Load rbenv automatically by appending--ruby env switcher
 eval "$(rbenv init - zsh)"
+
+# nvim
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# LocalStack
+export LOCALSTACK_API_KEY=6ZEgxOZkb7
+
+
