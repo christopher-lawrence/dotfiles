@@ -7,12 +7,18 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- file finder/grep/etc
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     -- or                            , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+
+  -- fzf extension
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- use telescope for ui-select
+  use { 'nvim-telescope/telescope-ui-select.nvim' }
 
   -- themes
   use 'arcticicestudio/nord-vim'
