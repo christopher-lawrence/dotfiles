@@ -142,7 +142,8 @@ local lsp_onattach_keymaps = function(client, bufnr)
 end
 
 lsp.on_attach(function(client, bufnr)
-  lsp_format_on_save(client, bufnr)
+  -- Disabling format on save for now
+  -- lsp_format_on_save(client, bufnr)
 
   lsp_onattach_keymaps(client, bufnr)
 end)

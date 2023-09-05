@@ -61,3 +61,4 @@ windows:
         - source ../venv/scoring3.8/bin/activate && source .env
         - source ../venv/scoring3.8/bin/activate && source .env
         - source ../venv/scoring3.8/bin/activate && source .env
+        - source ../venv/scoring3.8/bin/activate && source .env

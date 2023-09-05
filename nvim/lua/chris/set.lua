@@ -23,7 +23,7 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = false
 
 vim.opt.scrolloff = 8
-vim.opt.scrolljump=5
+vim.opt.scrolljump = 5
 vim.opt.signcolumn = "yes:1"
 vim.opt.isfname:append("@-@")
 
