@@ -94,6 +94,9 @@ return require('packer').startup(function(use)
 
   use { 'vimwiki/vimwiki' }
 
+  -- code commentor
+  use { 'numToStr/Comment.nvim' }
+
   -- use({
   --   "glepnir/lspsaga.nvim",
   --   branch = "main",
