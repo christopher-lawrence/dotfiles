@@ -12,6 +12,15 @@ require("formatter").setup {
   log_level = vim.log.levels.WARN,
   -- All formatter configurations are opt-in
   filetype = {
+    javascript = {
+      require("formatter.filetypes.javascript").prettierd,
+    },
+    typescript = {
+      require("formatter.filetypes.typescript").prettierd,
+    },
+    yaml = {
+      require("formatter.filetypes.yaml").prettierd,
+    },
     python = {
       require("formatter.filetypes.python").isort,
       require("formatter.filetypes.python").black,
@@ -30,6 +39,6 @@ require("formatter").setup {
       --     stdin = true,
       --   }
       -- end
-    }
+    },
   }
 }
