@@ -1,6 +1,36 @@
+local builtin = require('telescope.builtin')
+
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
 require('telescope').setup {
+  pickers ={
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      theme = "dropdown",
+      mappings = {
+        i = {
+          ["<C-d>"] = "delete_buffer",
+        },
+      }
+    },
+    find_files = {
+      sort_lastused = true,
+      theme = "dropdown",
+    },
+    live_grep = {
+      sort_lastused = true,
+      theme = "dropdown",
+    },
+    help_tags = {
+      sort_lastused = true,
+      theme = "dropdown",
+    },
+    git_files = {
+      sort_lastused = true,
+      theme = "dropdown",
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = true,                   -- false will only do exact matching
@@ -20,7 +50,6 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 
-local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
