@@ -21,6 +21,12 @@ require("formatter").setup {
     yaml = {
       require("formatter.filetypes.yaml").prettierd,
     },
+    html = {
+      require("formatter.filetypes.html").prettierd,
+    },
+    htmldjango = {
+      require("formatter.filetypes.html").prettierd,
+    },
     python = {
       require("formatter.filetypes.python").isort,
       require("formatter.filetypes.python").black,

@@ -107,21 +107,21 @@ lsp.setup_nvim_cmp({
   }
 })
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local lsp_format_on_save = function(client, bufnr)
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-        -- vim.lsp.buf.formatting_sync()
-        vim.lsp.buf.format({ bufnr = bufnr })
-      end,
-    })
-  end
-end
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local lsp_format_on_save = function(client, bufnr)
+--   if client.supports_method("textDocument/formatting") then
+--     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       group = augroup,
+--       buffer = bufnr,
+--       callback = function()
+--         -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+--         -- vim.lsp.buf.formatting_sync()
+--         vim.lsp.buf.format({ bufnr = bufnr })
+--       end,
+--     })
+--   end
+-- end
 
 local lsp_onattach_keymaps = function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }

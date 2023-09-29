@@ -56,6 +56,6 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../../venv/sandbox/bin/activate && nvim .
-        - source ../../venv/sandbox/bin/activate
-        - source ../../venv/sandbox/bin/activate
+        - source ../../venv/sandbox3.11/bin/activate && nvim .
+        - source ../../venv/sandbox3.11/bin/activate
+        - source ../../venv/sandbox3.11/bin/activate
