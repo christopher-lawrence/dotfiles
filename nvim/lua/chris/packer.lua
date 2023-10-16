@@ -71,6 +71,9 @@ return require('packer').startup(function(use)
   -- used by formatters installed with Mason
   use { 'mhartington/formatter.nvim' }
 
+  -- used by linters installed with Mason
+  use { 'mfussenegger/nvim-lint' }
+
   -- Lua functions, some plugins require it
   use { 'nvim-lua/plenary.nvim' }
 
