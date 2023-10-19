@@ -1,3 +1,4 @@
+-- lua will load this file from the root "init.lua" because the name is "init.lua"
 require("chris.remap")
 require("chris.set")
 
