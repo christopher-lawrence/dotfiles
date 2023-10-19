@@ -27,6 +27,9 @@ require("formatter").setup {
     htmldjango = {
       require("formatter.filetypes.html").prettierd,
     },
+    lua = {
+      require("formatter.filetypes.lua").stylua,
+    },
     python = {
       require("formatter.filetypes.python").isort,
       require("formatter.filetypes.python").black,

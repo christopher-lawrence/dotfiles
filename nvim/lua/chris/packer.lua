@@ -1,118 +1,119 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 -- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+return require("packer").startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-  -- file finder/grep/etc
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
+	-- Telescope
+	use({
+		-- file finder/grep/etc
+		{
+			"nvim-telescope/telescope.nvim",
+			tag = "0.1.4",
+			-- or                          , branch = '0.1.x',
+			requires = { { "nvim-lua/plenary.nvim" } },
+		},
+		-- fzf extension
+		{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+		-- use telescope for ui-select
+		{ "nvim-telescope/telescope-ui-select.nvim" },
+	})
 
-  -- fzf extension
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+	-- themes
+	use({
+		{ "arcticicestudio/nord-vim" },
+		{ "folke/tokyonight.nvim" },
+		{ "ellisonleao/gruvbox.nvim" },
+		{ "Mofiqul/vscode.nvim" },
+	})
 
-  -- use telescope for ui-select
-  use { 'nvim-telescope/telescope-ui-select.nvim' }
+	-- tree parser
+	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
-  -- themes
-  use 'arcticicestudio/nord-vim'
-  use 'folke/tokyonight.nvim'
-  use 'ellisonleao/gruvbox.nvim'
-  use 'Mofiqul/vscode.nvim'
+	-- Utilities
+	use({
+		-- amazing file switcher
+		{ "ThePrimeagen/harpoon" },
+		-- undo pane
+		{ "mbbill/undotree" },
+		-- git
+		{ "tpope/vim-fugitive" },
+		-- smooth scrolling
+		{ "psliwka/vim-smoothie" },
+		-- code commentor
+		{ "numToStr/Comment.nvim" },
+		-- git icons in the gutter
+		-- disabled in favor of gitsigns
+		{ "airblade/vim-gitgutter", disable = true },
+		-- git signs: testing this out. seems very nice
+		-- tag = 'release' -- To use the latest release },
+		{ "lewis6991/gitsigns.nvim" },
+		-- vim wiki
+		{ "vimwiki/vimwiki", disable = true },
+	})
 
-  -- some kind of tree parser
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+	-- lsp-zero
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
 
-  -- amazing file switcher
-  use('ThePrimeagen/harpoon')
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+			{ "hrsh7th/cmp-vsnip" },
 
-  -- undo pane
-  use('mbbill/undotree')
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/vim-vsnip" },
+			-- not sure why these are disabled...
+			{ "SirVer/ultisnips", disable = true },
+			{ "quangnguyen30192/cmp-nvim-ultisnips", disable = true },
+		},
+	})
 
-  -- git
-  use('tpope/vim-fugitive')
+	-- used by formatters installed with Mason
+	use({ "mhartington/formatter.nvim" })
 
-  -- smooth scrolling
-  use('psliwka/vim-smoothie')
+	-- used by linters installed with Mason
+	use({ "mfussenegger/nvim-lint" })
 
-  -- lsp-zero
-  use {
-    'VonHeikemen/lsp-zero.nvim',
-    requires = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
+	-- Lua functions, some plugins require it
+	use({ "nvim-lua/plenary.nvim" })
 
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-vsnip' },
+	-- Lua
+	use({
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
+	})
 
-      -- Snippets
-      { 'L3MON4D3/LuaSnip' },
-      { 'rafamadriz/friendly-snippets' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/vim-vsnip' },
-      -- { 'SirVer/ultisnips' },
-      -- { 'quangnguyen30192/cmp-nvim-ultisnips' },
-    }
-  }
+	-- use({
+	--   "glepnir/lspsaga.nvim",
+	--   branch = "main",
+	--   config = function()
+	--     local saga = require("lspsaga")
 
-  -- used by formatters installed with Mason
-  use { 'mhartington/formatter.nvim' }
-
-  -- used by linters installed with Mason
-  use { 'mfussenegger/nvim-lint' }
-
-  -- Lua functions, some plugins require it
-  use { 'nvim-lua/plenary.nvim' }
-
-  -- git icons in the gutter
-  -- use { 'airblade/vim-gitgutter' }
-
-  -- git signs: testing this out. seems very nice
-  use {
-    'lewis6991/gitsigns.nvim',
-    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
-  }
-
-  -- Lua
-  use {
-    "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
-  use { 'vimwiki/vimwiki' }
-
-  -- code commentor
-  use { 'numToStr/Comment.nvim' }
-
-  -- use({
-  --   "glepnir/lspsaga.nvim",
-  --   branch = "main",
-  --   config = function()
-  --     local saga = require("lspsaga")
-
-  --     saga.init_lsp_saga({
-  --       -- your configuration
-  --     })
-  --   end,
-  -- })
+	--     saga.init_lsp_saga({
+	--       -- your configuration
+	--     })
+	--   end,
+	-- })
 end)
