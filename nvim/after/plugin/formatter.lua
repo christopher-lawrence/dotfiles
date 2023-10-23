@@ -18,6 +18,12 @@ require("formatter").setup {
     typescript = {
       require("formatter.filetypes.typescript").prettierd,
     },
+    json = {
+      require("formatter.filetypes.json").prettierd,
+    },
+    jsonc = {
+      require("formatter.filetypes.json").prettierd,
+    },
     yaml = {
       require("formatter.filetypes.yaml").prettierd,
     },
