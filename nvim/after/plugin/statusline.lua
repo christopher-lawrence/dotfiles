@@ -111,6 +111,14 @@ local function lineinfo()
   return " %P %l:%c "
 end
 
+local function fileEncoding()
+  -- would be nice to get these uppercase
+  local encoding = "%{&fenc}"
+  local fformat = "%{&ff}"
+
+  return "["..encoding..'|'..fformat.."]"
+end
+
 local function vcs()
   local git_info = vim.b.gitsigns_status_dict
   if not git_info or git_info.head == "" then
@@ -151,12 +159,14 @@ Statusline.active = function()
     "%#Normal# ",
     filepath(),
     filename(),
+    "%m", -- modified flag
     "%#Normal# ",
     vcs(),
     "%#Normal#",
     lsp(),
     "%=%#StatusLineExtra#",
     filetype(),
+    fileEncoding(),
     lineinfo(),
   }
 end
