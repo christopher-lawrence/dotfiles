@@ -1,4 +1,9 @@
 local lsp = require('lsp-zero')
+local neodev = require("neodev")
+
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+neodev.setup({})
+
 
 lsp.preset('recommended')
 
@@ -16,14 +21,20 @@ lsp.configure('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { 'vim' }
+        -- globals = { 'vim' }
       },
       codeLens = {
         enabled = true
       },
       hint = {
         enable = true
-      }
+      },
+      completion = {
+        callSnippet = "Replace"
+      },
+      workspace = {
+        checkThirdParty = false, -- disable a pop up asking to "update workspace for 'luv'"
+      },
     }
   }
 })

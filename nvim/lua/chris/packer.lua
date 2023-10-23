@@ -33,6 +33,9 @@ return require("packer").startup(function(use)
 	-- tree parser
 	use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 
+	-- neovim dev
+	use("folke/neodev.nvim")
+
 	-- Utilities
 	use({
 		-- amazing file switcher
