@@ -27,6 +27,9 @@ require("formatter").setup {
     yaml = {
       require("formatter.filetypes.yaml").prettierd,
     },
+    yml = {
+      require("formatter.filetypes.yaml").prettierd,
+    },
     html = {
       require("formatter.filetypes.html").prettierd,
     },
@@ -38,7 +41,19 @@ require("formatter").setup {
     },
     python = {
       require("formatter.filetypes.python").isort,
-      require("formatter.filetypes.python").black,
+      -- require("formatter.filetypes.python").black
+      -- defining my own function to skip string normalization (-S)
+      function()
+        return {
+          exe = "black",
+          args = {
+            "-S", -- skip string normalization: black defaults to double quotes
+            "-q", -- default
+            "-", -- default
+          },
+          stdin = true,
+        }
+      end
 
       -- You can also define your own configuration
       -- function()
