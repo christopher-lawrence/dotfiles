@@ -1,7 +1,7 @@
 # /Users/chris/.config/tmuxinator/home-inventory-ui.yml
 
-name: veriifier
-root: ~/src/veriifier
+name: valiidator
+root: ~/src/valiidator
 
 # Optional tmux socket
 # socket_name: foo

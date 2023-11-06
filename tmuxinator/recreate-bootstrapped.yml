@@ -4,8 +4,8 @@
 # - copy this file to a python project as .tmuxinator.yml
 # - start with `mux local`
 
-name: alice
-root: /Users/chris/src/alice/
+name: recreate-bootstrapped
+root: /Users/chris/src/recreate-bootstrapped/
 
 # Optional tmux socket
 # socket_name: foo
@@ -57,7 +57,6 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/alice3.8/bin/activate && source .env && nvim .
-        - source ../venv/alice3.8/bin/activate && source .env
-        - source ../venv/alice3.8/bin/activate && source .env
-        - source ../venv/alice3.8/bin/activate && source .env
+        - source ../venv/recreate_bootstrapped3.11/bin/activate && nvim .
+        - source ../venv/recreate_bootstrapped3.11/bin/activate
+        - source ../venv/recreate_bootstrapped3.11/bin/activate
