@@ -56,6 +56,6 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/warchild3.8/bin/activate && source .env && nvim .
-        - source ../venv/warchild3.8/bin/activate && source .env
-        - source ../venv/warchild3.8/bin/activate && source .env
+        - source ../venv/warchild3.10/bin/activate && source .env && nvim .
+        - source ../venv/warchild3.10/bin/activate && source .env
+        - source ../venv/warchild3.10/bin/activate && source .env
