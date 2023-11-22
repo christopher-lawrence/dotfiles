@@ -75,7 +75,7 @@ lsp.configure("pyright", {
 		},
 	},
 	on_attach = function()
-		print("pyright attached")
+		-- print("pyright attached")
 	end,
 	-- capabilities = capabilities,
 })
@@ -136,20 +136,31 @@ lsp.setup_nvim_cmp({
 local lsp_onattach_keymaps = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	-- vim.keymap.set("n", "gd", "<cmd>TroubleToggle lsp_definitions<cr>", opts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+  -- (W)orkspace
 	vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+
+  -- (D)ocument
+  vim.keymap.set("n", "<leader>dd", function() require("trouble").toggle("document_diagnostics") end, opts)
+
+  -- (D)iagnostics
 	vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+
+  -- definitions/references
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "<leader>gr", function() require("trouble").toggle("lsp_references") end, opts)
+	vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end, opts)
+
+  -- code action
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-	-- vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<cr>", opts)
-  -- this doesn't seem to work...
-	vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+
+  -- utility
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 	vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
+
+  -- this triggers the buffer specific formatters, which can be different that Format.nvim for some reason
 	vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")
 end
 

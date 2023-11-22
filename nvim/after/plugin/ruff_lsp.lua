@@ -1,5 +1,5 @@
 local on_attach = function(client, bufnr)
-  print('ruff attached')
+  -- print('ruff attached')
 	client.server_capabilities.hoverProvider = false
 end
 
