@@ -29,7 +29,14 @@ require('telescope').setup {
     git_files = {
       sort_lastused = true,
       theme = "dropdown",
-    }
+    },
+    marks = {
+      sort_lastused = true,
+      theme = "dropdown",
+    },
+    git_commits = {
+      theme = "dropdown",
+    },
   },
   extensions = {
     fzf = {
@@ -50,11 +57,15 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
 
+-- These will be global. 
+-- Add to a 'on_attach' in lsp.lua and pass in bufnr to options for buffer specific
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fs', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
+-- vim.keymap.set('n', '<leader>gg', builtin.builtin, {})
 vim.keymap.set('n', '<leader>ps', function()
   builtin.grep_string({ search = vim.fn.input("Grep >  ") });
 end)
