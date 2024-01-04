@@ -33,6 +33,13 @@ require('telescope').setup {
     marks = {
       sort_lastused = true,
       theme = "dropdown",
+      -- This causes an error, but "delete_mark" is an action
+      -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/actions/init.lua#L1460
+      -- mappings = {
+      --   i = {
+      --     ["<C-d>"] = "delete_mark",
+      --   },
+      -- }
     },
     git_commits = {
       theme = "dropdown",
@@ -65,6 +72,7 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
+vim.keymap.set('n', '<leader>fm', builtin.marks, {})
 -- vim.keymap.set('n', '<leader>gg', builtin.builtin, {})
 vim.keymap.set('n', '<leader>ps', function()
   builtin.grep_string({ search = vim.fn.input("Grep >  ") });

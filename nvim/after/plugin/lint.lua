@@ -1,6 +1,8 @@
+-- Not sure if this is necessary any more??
 require('lint').linters_by_ft = {
-  python = {'mypy',},
-  json = {'eslint',}
+  -- Should mypy be the linter??
+  -- python = {'mypy',},
+  -- json = {'eslint',}
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
