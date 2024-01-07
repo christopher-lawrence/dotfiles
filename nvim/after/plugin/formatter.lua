@@ -45,6 +45,21 @@ require("formatter").setup({
     },
     htmldjango = {
       require("formatter.filetypes.html").prettierd,
+      -- Seems like a good idea, but doesn't seem to work
+      -- function()
+      --   print("djlint test")
+      --   if vim.fn.executable("djlint") ~= 1 then
+      --     print("djlint not found")
+      --     return
+      --   end
+      --   return {
+      --     exe = "djlint",
+      --     args = {
+      --       "--reformat",
+      --       "-",
+      --     }
+      --   }
+      -- end,
     },
     lua = {
       require("formatter.filetypes.lua").stylua,
