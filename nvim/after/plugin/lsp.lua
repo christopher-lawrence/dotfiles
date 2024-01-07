@@ -13,6 +13,7 @@ lsp.ensure_installed({
 	"eslint",
 	"ruff_lsp",
 	"pyright",
+  "html",
 })
 
 -- Fix Undefined global 'vim'
@@ -78,6 +79,23 @@ lsp.configure("pyright", {
 		-- print("pyright attached")
 	end,
 	-- capabilities = capabilities,
+})
+
+-- disabled for HTMLDJANGO due to the indention
+lsp.configure("html", {
+  filetypes = { "html", "htmldjango" },
+  settings = {
+    html = {
+      format = {
+        indentHandlebars = true,
+        templating = true, -- django templates
+        indentInnerHtml = true,
+      },
+    },
+  },
+  on_attach = function ()
+    -- print("html attached")
+  end
 })
 
 local cmp_kinds = {
