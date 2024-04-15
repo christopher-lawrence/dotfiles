@@ -5,7 +5,7 @@
 # - start with `mux local`
 
 name: loiter
-root: /Users/chris/src/loiter/
+root: /Users/chris/src/loiter-all/
 
 # Optional tmux socket
 # socket_name: foo
@@ -51,11 +51,13 @@ tmux_options: -f ~/.config/tmux/tmux.conf
 
 windows:
   - vim:
-      layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]}
+      layout: main-vertical 
+      # layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/loiter3.9/bin/activate && source .env && nvim .
-        - source ../venv/loiter3.9/bin/activate && source .env
-        - source ../venv/loiter3.9/bin/activate && source .env
+        - source .venv/bin/activate && nvim .
+        - source .venv/bin/activate && cd loiter/ && source .env
+        - source .venv/bin/activate && cd loiter-vendors/ && source .env
+        - source .venv//bin/activate && cd loiter-events/ && source .env

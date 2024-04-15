@@ -83,7 +83,7 @@ lsp.configure("pyright", {
 
 -- disabled for HTMLDJANGO due to the indention
 lsp.configure("html", {
-  filetypes = { "html", "htmldjango" },
+  filetypes = { "html", "htmldjango", "css" },
   settings = {
     html = {
       format = {

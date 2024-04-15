@@ -18,6 +18,9 @@ require("formatter").setup({
     typescript = {
       require("formatter.filetypes.typescript").prettierd,
     },
+    typescriptreact = {
+      require("formatter.filetypes.typescript").prettierd,
+    },
     json = {
       require("formatter.filetypes.json").prettierd,
     },

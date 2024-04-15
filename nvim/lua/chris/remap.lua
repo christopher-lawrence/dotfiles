@@ -41,7 +41,15 @@ vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
 vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
 -- why does this internal command need to be quoted??
-vim.keymap.set("n", "<leader>f", ":lua vim.lsp.buf.format { async = true }<CR>")
+vim.keymap.set(
+  {"n", "v"},
+  "<leader>f",
+  function()
+    vim.lsp.buf.format()
+  end
+)
+-- vim.keymap.set("v", "<leader>f",
+--   ":lua vim.lsp.buf.format({ async = true, range = { ['start'] = vim.api.nvim_buf_get_mark(0, '<'), ['end'] = vim.api.nvim_buf_get_mark(0, '>')} })<CR>")
 -- Formatter -- disabling to let the buffer specific formatter run. Just run :Format to use formatter
 -- vim.keymap.set("n", "<leader>f", ":Format<cr>")
 

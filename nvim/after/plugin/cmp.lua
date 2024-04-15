@@ -8,6 +8,7 @@ cmp.setup({
     { name = "path" },
     -- { name = "luasnip" }, -- this is a specific snippet provider
     { name = "vsnip" },
+    { name = "nvim_lsp_signature_help" },
   },
   mapping = {
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
