@@ -28,6 +28,14 @@ return require("packer").startup(function(use)
 		{ "folke/tokyonight.nvim" },
 		{ "ellisonleao/gruvbox.nvim" },
 		{ "Mofiqul/vscode.nvim" },
+		{
+			"maxmx03/solarized.nvim",
+			config = function()
+				vim.o.background = "light" -- or 'light'
+
+				-- vim.cmd.colorscheme("solarized")
+			end,
+		},
 	})
 
 	-- tree parser
@@ -74,7 +82,7 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-vsnip" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" },
