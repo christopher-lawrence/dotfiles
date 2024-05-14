@@ -36,6 +36,7 @@ return require("packer").startup(function(use)
 				-- vim.cmd.colorscheme("solarized")
 			end,
 		},
+		{ "projekt0n/github-nvim-theme" },
 	})
 
 	-- tree parser
