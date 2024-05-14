@@ -98,6 +98,13 @@ lsp.configure("html", {
   end
 })
 
+lsp.configure("prismals", {
+  filetypes = { "prisma" },
+  on_attach = function()
+    print("prisma attached")
+  end,
+})
+
 local cmp_kinds = {
 	Text = "  ",
 	Method = "  ",

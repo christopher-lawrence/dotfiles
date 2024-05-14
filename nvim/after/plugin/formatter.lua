@@ -27,6 +27,9 @@ require("formatter").setup({
     jsonc = {
       require("formatter.filetypes.json").prettierd,
     },
+    css = {
+      require("formatter.filetypes.css").prettierd,
+    },
     yaml = {
       -- require("formatter.filetypes.yaml").prettierd,
       function()
