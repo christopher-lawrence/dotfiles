@@ -13,7 +13,7 @@ lsp.ensure_installed({
 	"eslint",
 	"ruff_lsp",
 	"pyright",
-  "html",
+	"html",
 })
 
 -- Fix Undefined global 'vim'
@@ -83,26 +83,61 @@ lsp.configure("pyright", {
 
 -- disabled for HTMLDJANGO due to the indention
 lsp.configure("html", {
-  filetypes = { "html", "htmldjango", "css" },
-  settings = {
-    html = {
-      format = {
-        indentHandlebars = true,
-        templating = true, -- django templates
-        indentInnerHtml = true,
-      },
-    },
-  },
-  on_attach = function ()
-    -- print("html attached")
-  end
+	filetypes = { "html", "htmldjango", "css" },
+	settings = {
+		html = {
+			format = {
+				indentHandlebars = true,
+				templating = true, -- django templates
+				indentInnerHtml = true,
+			},
+		},
+	},
+	on_attach = function()
+		-- print("html attached")
+	end,
 })
 
 lsp.configure("prismals", {
-  filetypes = { "prisma" },
-  on_attach = function()
-    print("prisma attached")
-  end,
+	filetypes = { "prisma" },
+	on_attach = function()
+		print("prisma attached")
+	end,
+})
+
+lsp.configure("emmet_language_server", {
+	filetypes = {
+		"css",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"pug",
+		"typescriptreact",
+	},
+	init_options = {
+		---@type table<string, string>
+		includeLanguages = {},
+		--- @type string[]
+		excludeLanguages = {},
+		--- @type string[]
+		extensionsPath = {},
+		--- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
+		preferences = {},
+		--- @type boolean Defaults to `true`
+		showAbbreviationSuggestions = true,
+		--- @type "always" | "never" Defaults to `"always"`
+		showExpandedAbbreviation = "always",
+		--- @type boolean Defaults to `false`
+		showSuggestionsAsSnippets = false,
+		--- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
+		syntaxProfiles = {},
+		--- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
+		variables = {},
+	},
 })
 
 local cmp_kinds = {
@@ -161,31 +196,37 @@ lsp.setup_nvim_cmp({
 local lsp_onattach_keymaps = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
-  -- (W)orkspace
+	-- (W)orkspace
 	vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
-  -- (D)ocument
-  vim.keymap.set("n", "<leader>dd", function() require("trouble").toggle("document_diagnostics") end, opts)
+	-- (D)ocument
+	vim.keymap.set("n", "<leader>dd", function()
+		require("trouble").toggle("document_diagnostics")
+	end, opts)
 
-  -- (D)iagnostics
+	-- (D)iagnostics
 	vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 
-  -- definitions/references
+	-- definitions/references
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "<leader>gr", function() require("trouble").toggle("lsp_references") end, opts)
-	vim.keymap.set("n", "gr", function() require("trouble").toggle("lsp_references") end, opts)
+	vim.keymap.set("n", "<leader>gr", function()
+		require("trouble").toggle("lsp_references")
+	end, opts)
+	vim.keymap.set("n", "gr", function()
+		require("trouble").toggle("lsp_references")
+	end, opts)
 
-  -- code action
+	-- code action
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-  -- utility
+	-- utility
 	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 	vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 
-  -- this triggers the buffer specific formatters, which can be different that Format.nvim for some reason
+	-- this triggers the buffer specific formatters, which can be different that Format.nvim for some reason
 	vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")
 end
 
