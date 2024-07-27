@@ -17,6 +17,7 @@ require('telescope').setup {
     find_files = {
       sort_lastused = true,
       theme = "dropdown",
+      hidden = true,
     },
     live_grep = {
       sort_lastused = true,
@@ -29,6 +30,7 @@ require('telescope').setup {
     git_files = {
       sort_lastused = true,
       theme = "dropdown",
+      hidden = true,
     },
     marks = {
       sort_lastused = true,
