@@ -3,7 +3,7 @@ background = '#ffffff'
 foreground = '#1F2328'
 
 [colors.cursor]
-text = '#ffffff'
+text = 'CellBackground'
 cursor = '#1f2328'
 
 [colors.normal]
