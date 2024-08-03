@@ -1,6 +1,6 @@
 live_config_reload = true
 
-import = ["~/.config/alacritty/github-dark.toml",]
+import = ["~/.config/alacritty/tokyo-night-storm.toml",]
 
 [env]
 TERM = "alacritty"
