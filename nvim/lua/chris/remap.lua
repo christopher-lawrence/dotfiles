@@ -36,6 +36,7 @@ vim.keymap.set("n", "Q", "<nop>")
 --
 -- Buffers
 vim.keymap.set("n", "<leader>bd", vim.cmd.bd)
+vim.keymap.set("n", "<leader>bl", '<cmd>b#<CR>')
 
 -- Trouble
 vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
