@@ -1,6 +1,6 @@
 Better logging
 
-Add to `git config --globla --edit`
+Add to `git config --global --edit`
 
 ```sh
     [alias]
