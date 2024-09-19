@@ -57,8 +57,8 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/alice3.8/bin/activate && source .env && nvim .
-        - source ../venv/alice3.8/bin/activate && source .env
-        - source ../venv/alice3.8/bin/activate && source .env
-        - source ../venv/alice3.8/bin/activate && source .env
-        - source ../venv/alice3.8/bin/activate && source .env
+        - source .env && nvim .
+        - source .env
+        - source .env
+        - source .env
+        - source .env

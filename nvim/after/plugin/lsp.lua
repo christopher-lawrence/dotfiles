@@ -12,7 +12,9 @@ lsp.ensure_installed({
 	"omnisharp",
 	"eslint",
 	"ruff_lsp",
-	"pyright",
+	-- "pyright",
+	-- "mypy",
+	-- "pylsp", 
 	"html",
 })
 
@@ -62,23 +64,52 @@ lsp.configure("omnisharp", {
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- see https://github.com/microsoft/pyright/blob/main/docs/settings.md
-lsp.configure("pyright", {
+-- lsp.configure("pyright", {
+-- 	filetypes = { "python" },
+-- 	settings = {
+-- 		python = {
+-- 			analysis = {
+-- 				diagnosticMode = "workspace",
+-- 				diagnosticSeverityOverrides = {
+-- 					reportGeneralTypeIssues = "warning",
+-- 					reportOptionalMemberAccess = false,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- 	on_attach = function()
+-- 		-- print("pyright attached")
+-- 	end,
+-- 	-- capabilities = capabilities,
+-- })
+
+-- Make sure to install pylsp directly into the virutal environment
+-- url: https://github.com/python-lsp/python-lsp-server
+-- pip install "python-lsp-server[all]"
+lsp.configure("pylsp", {
 	filetypes = { "python" },
+	-- on_attach = function()
+	-- 	print("pylsp here")
+	-- end,
 	settings = {
-		python = {
-			analysis = {
-				diagnosticMode = "workspace",
-				diagnosticSeverityOverrides = {
-					reportGeneralTypeIssues = "warning",
-					reportOptionalMemberAccess = false,
+		pylsp = {
+			plugins = {
+				pylsp_mypy = {
+					enabled = true,
+					dmypy = true,
+					live_mode = false,
+					overrides = { "--disable-error-code=import-untyped", true, "--explicit-package-bases" },
+					report_progress = true,
+					dmypy_status_file = "/Users/chris/.local/state/nvim/mypy.pid",
+					-- strict = true,
 				},
+				pycodestyle = {
+					enabled = false,
+				},
+				autopep8 = { enabled = false },
 			},
 		},
 	},
-	on_attach = function()
-		-- print("pyright attached")
-	end,
-	-- capabilities = capabilities,
 })
 
 -- disabled for HTMLDJANGO due to the indention

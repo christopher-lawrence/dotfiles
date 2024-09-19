@@ -57,8 +57,13 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/scoring3.8/bin/activate && nvim .
-        - source ../venv/scoring3.8/bin/activate && source .env
-        - source ../venv/scoring3.8/bin/activate && source .env
-        - source ../venv/scoring3.8/bin/activate && source .env
-        - source ../venv/scoring3.8/bin/activate && source .env
+        # - source ../venv/scoring3.8/bin/activate && nvim .
+        # - source ../venv/scoring3.8/bin/activate && source .env
+        # - source ../venv/scoring3.8/bin/activate && source .env
+        # - source ../venv/scoring3.8/bin/activate && source .env
+        # - source ../venv/scoring3.8/bin/activate && source .env
+        - nvim .
+        - source .env
+        - source .env
+        - source .env
+        - source .env
