@@ -52,7 +52,7 @@ vim.keymap.set(
 -- vim.keymap.set("v", "<leader>f",
 --   ":lua vim.lsp.buf.format({ async = true, range = { ['start'] = vim.api.nvim_buf_get_mark(0, '<'), ['end'] = vim.api.nvim_buf_get_mark(0, '>')} })<CR>")
 -- Formatter -- disabling to let the buffer specific formatter run. Just run :Format to use formatter
--- vim.keymap.set("n", "<leader>f", ":Format<cr>")
+vim.keymap.set("n", "<leader>F", ":Format<cr>")
 
 -- Select buffer 2 -- on the left -- during merge conflic / diff view
 vim.keymap.set("n", "<leader>gh", ":diffget //2<CR>")

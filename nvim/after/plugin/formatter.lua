@@ -71,8 +71,8 @@ require("formatter").setup({
       require("formatter.filetypes.lua").stylua,
     },
     python = {
-      require("formatter.filetypes.python").isort,
-      -- require("formatter.filetypes.python").ruff,
+      -- require("formatter.filetypes.python").isort,
+      require("formatter.filetypes.python").ruff,
       -- function()
       -- 	return {
       -- 		exe = "python -m ruff",
