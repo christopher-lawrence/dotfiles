@@ -8,7 +8,7 @@ lsp.preset("recommended")
 
 lsp.ensure_installed({
 	"lua_ls",
-	"tsserver",
+	"ts_ls",
 	"omnisharp",
 	"eslint",
 	"ruff_lsp",
@@ -42,7 +42,7 @@ lsp.configure("lua_ls", {
 })
 
 -- https://github.com/typescript-language-server/typescript-language-server
-lsp.configure("tsserver", {
+lsp.configure("ts_ls", {
 	-- init_options = {
 	--   tsserver = {
 	--     logVerbosity = 'verbose',
@@ -51,7 +51,7 @@ lsp.configure("tsserver", {
 	--   },
 	-- },
 	on_attach = function()
-		print("tsserver attached")
+		print("ts_ls attached")
 	end,
 })
 
@@ -111,6 +111,7 @@ lsp.configure("pylsp", {
 					enabled = false,
 				},
 				autopep8 = { enabled = false },
+        jedi_completion = { fuzzy = true },
 			},
 		},
 	},
@@ -232,7 +233,8 @@ local lsp_onattach_keymaps = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	-- (W)orkspace
-	vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+  -- this is defined in telescope.lua
+	-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
 	-- (D)ocument
 	vim.keymap.set("n", "<leader>dd", function()
