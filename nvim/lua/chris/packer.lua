@@ -12,7 +12,8 @@ return require("packer").startup(function(use)
 		-- file finder/grep/etc
 		{
 			"nvim-telescope/telescope.nvim",
-			tag = "0.1.4",
+      -- explicitly setting the tag to avoid breaking changes
+			tag = "0.1.8",
 			-- or                          , branch = '0.1.x',
 			requires = { { "nvim-lua/plenary.nvim" } },
 		},
@@ -53,6 +54,8 @@ return require("packer").startup(function(use)
 		{ "mbbill/undotree" },
 		-- git
 		{ "tpope/vim-fugitive" },
+    -- https://github.com/sindrets/diffview.nvim
+    { "sindrets/diffview.nvim" },
 		-- smooth scrolling
 		{ "psliwka/vim-smoothie" },
 		-- code commentor
@@ -65,6 +68,8 @@ return require("packer").startup(function(use)
 		{ "lewis6991/gitsigns.nvim" },
 		-- vim wiki
 		{ "vimwiki/vimwiki", disable = true },
+    -- auto completion -- removing for now, pylsp uses jedi directly so just need that added to the pyenv
+    -- { 'davidhalter/jedi-vim' },
 	})
 
 	-- lsp-zero
