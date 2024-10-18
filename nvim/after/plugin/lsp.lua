@@ -14,7 +14,7 @@ lsp.ensure_installed({
 	"ruff_lsp",
 	-- "pyright",
 	-- "mypy",
-	-- "pylsp", 
+	-- "pylsp",
 	"html",
 })
 
@@ -86,7 +86,7 @@ lsp.configure("omnisharp", {
 -- Make sure to install pylsp directly into the virutal environment
 -- url: https://github.com/python-lsp/python-lsp-server
 -- pip install "python-lsp-server[all]"
--- 
+--
 -- Plugins
 -- mypy
 -- pip install pylsp-mypy
@@ -111,7 +111,17 @@ lsp.configure("pylsp", {
 					enabled = false,
 				},
 				autopep8 = { enabled = false },
-        jedi_completion = { fuzzy = true },
+				jedi = { auto_import_modules = { "django" } },
+				jedi_completion = { fuzzy = true },
+				jedi_hover = { enabled = true },
+        -- This seems broken atm.
+        -- See: https://github.com/python-lsp/python-lsp-server/issues/503
+				rope_autoimport = {
+					enabled = false,
+					memory = true,
+					completions = { enabled = true },
+					code_actions = { enabled = true },
+				},
 			},
 		},
 	},
@@ -233,7 +243,7 @@ local lsp_onattach_keymaps = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	-- (W)orkspace
-  -- this is defined in telescope.lua
+	-- this is defined in telescope.lua
 	-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
 	-- (D)ocument
