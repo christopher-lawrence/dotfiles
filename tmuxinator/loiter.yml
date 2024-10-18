@@ -57,7 +57,7 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source .venv/bin/activate && nvim .
-        - source .venv/bin/activate && cd loiter/ && source .env
-        - source .venv/bin/activate && cd loiter-vendors/ && source .env
-        - source .venv//bin/activate && cd loiter-events/ && source .env
+        - nvim .
+        - cd loiter/ && source .env
+        - cd loiter-vendors/ && source .env
+        - loiter-events/ && source .env

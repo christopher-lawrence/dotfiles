@@ -65,5 +65,3 @@ windows:
         - nvim .
         - source .env
         - source .env
-        - source .env
-        - source .env

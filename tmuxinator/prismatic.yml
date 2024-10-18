@@ -4,8 +4,8 @@
 # - copy this file to a python project as .tmuxinator.yml
 # - start with `mux local`
 
-name: alice
-root: /Users/chris/src/alice/
+name: prismatic
+root: /Users/chris/src/prismatic/
 
 # Optional tmux socket
 # socket_name: foo
@@ -57,5 +57,5 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source .env && nvim .
-        - source .env
+        - nvim .
+        - 

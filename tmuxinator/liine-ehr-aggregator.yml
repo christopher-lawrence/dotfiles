@@ -4,8 +4,8 @@
 # - copy this file to a python project as .tmuxinator.yml
 # - start with `mux local`
 
-name: alice
-root: /Users/chris/src/alice/
+name: liine-ehr-aggregator
+root: /Users/chris/src/liine-ehr-aggregator/
 
 # Optional tmux socket
 # socket_name: foo

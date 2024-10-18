@@ -4,8 +4,8 @@
 # - copy this file to a python project as .tmuxinator.yml
 # - start with `mux local`
 
-name: alice
-root: /Users/chris/src/alice/
+name: liine-mroi-matcher
+root: /Users/chris/src/mroi-matcher/
 
 # Optional tmux socket
 # socket_name: foo
