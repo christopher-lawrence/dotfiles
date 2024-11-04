@@ -1,25 +1,30 @@
-local lsp = require("lsp-zero")
+-- local lsp = require("lsp-zero")
+local lsp = require("lspconfig")
 local neodev = require("neodev")
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
 
 -- IMPORTANT: make sure to setup neodev BEFORE lspconfig
 neodev.setup({})
 
-lsp.preset("recommended")
+mason.setup()
 
-lsp.ensure_installed({
-	"lua_ls",
-	"ts_ls",
-	"omnisharp",
-	"eslint",
-	"ruff_lsp",
-	-- "pyright",
-	-- "mypy",
-	-- "pylsp",
-	"html",
+mason_lspconfig.setup({
+	ensure_installed = {
+		"lua_ls",
+		"ts_ls",
+		"omnisharp",
+		"eslint",
+		"ruff_lsp",
+		-- "pyright",
+		-- "mypy",
+		-- "pylsp",
+		"html",
+	},
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure("lua_ls", {
+lsp.lua_ls.setup({
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -42,7 +47,7 @@ lsp.configure("lua_ls", {
 })
 
 -- https://github.com/typescript-language-server/typescript-language-server
-lsp.configure("ts_ls", {
+lsp.ts_ls.setup({
 	-- init_options = {
 	--   tsserver = {
 	--     logVerbosity = 'verbose',
@@ -55,7 +60,7 @@ lsp.configure("ts_ls", {
 	end,
 })
 
-lsp.configure("omnisharp", {
+lsp.omnisharp.setup({
 	on_attach = function()
 		print("omnisharp attached")
 	end,
@@ -90,7 +95,7 @@ lsp.configure("omnisharp", {
 -- Plugins
 -- mypy
 -- pip install pylsp-mypy
-lsp.configure("pylsp", {
+lsp.pylsp.setup({
 	filetypes = { "python" },
 	-- on_attach = function()
 	-- 	print("pylsp here")
@@ -114,8 +119,8 @@ lsp.configure("pylsp", {
 				jedi = { auto_import_modules = { "django" } },
 				jedi_completion = { fuzzy = true },
 				jedi_hover = { enabled = true },
-        -- This seems broken atm.
-        -- See: https://github.com/python-lsp/python-lsp-server/issues/503
+				-- This seems broken atm.
+				-- See: https://github.com/python-lsp/python-lsp-server/issues/503
 				rope_autoimport = {
 					enabled = false,
 					memory = true,
@@ -128,7 +133,7 @@ lsp.configure("pylsp", {
 })
 
 -- disabled for HTMLDJANGO due to the indention
-lsp.configure("html", {
+lsp.html.setup({
 	filetypes = { "html", "htmldjango", "css" },
 	settings = {
 		html = {
@@ -144,14 +149,14 @@ lsp.configure("html", {
 	end,
 })
 
-lsp.configure("prismals", {
+lsp.prismals.setup({
 	filetypes = { "prisma" },
 	on_attach = function()
 		print("prisma attached")
 	end,
 })
 
-lsp.configure("emmet_language_server", {
+lsp.emmet_language_server.setup({
 	filetypes = {
 		"css",
 		"eruby",
@@ -186,43 +191,6 @@ lsp.configure("emmet_language_server", {
 	},
 })
 
-local cmp_kinds = {
-	Text = "  ",
-	Method = "  ",
-	Function = "  ",
-	Constructor = "  ",
-	Field = "  ",
-	Variable = "  ",
-	Class = "  ",
-	Interface = "  ",
-	Module = "  ",
-	Property = "  ",
-	Unit = "  ",
-	Value = "  ",
-	Enum = "  ",
-	Keyword = "  ",
-	Snippet = "  ",
-	Color = "  ",
-	File = "  ",
-	Reference = "  ",
-	Folder = "  ",
-	EnumMember = "  ",
-	Constant = "  ",
-	Struct = "  ",
-	Event = "  ",
-	Operator = "  ",
-	TypeParameter = "  ",
-}
-
-lsp.setup_nvim_cmp({
-	formatting = {
-		format = function(_, vim_item)
-			vim_item.kind = (cmp_kinds[vim_item.kind] or "") .. vim_item.kind
-			return vim_item
-		end,
-	},
-})
-
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- local lsp_format_on_save = function(client, bufnr)
 --   if client.supports_method("textDocument/formatting") then
@@ -239,52 +207,56 @@ lsp.setup_nvim_cmp({
 --   end
 -- end
 
-local lsp_onattach_keymaps = function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "LSP actions",
+	callback = function(event)
+		-- print(string.format('event fired: %s', vim.inspect(event)))
+		local opts = { buffer = event.buf, remap = false }
 
-	-- (W)orkspace
-	-- this is defined in telescope.lua
-	-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+		-- (W)orkspace
+		-- this is defined in telescope.lua
+		-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
-	-- (D)ocument
-	vim.keymap.set("n", "<leader>dd", function()
-		require("trouble").toggle("document_diagnostics")
-	end, opts)
+		-- (D)ocument
+		vim.keymap.set("n", "<leader>dd", function()
+			require("trouble").toggle("document_diagnostics")
+		end, opts)
 
-	-- (D)iagnostics
-	vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-	vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-	vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+		-- (D)iagnostics
+		vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
 
-	-- definitions/references
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "<leader>gr", function()
-		require("trouble").toggle("lsp_references")
-	end, opts)
-	vim.keymap.set("n", "gr", function()
-		require("trouble").toggle("lsp_references")
-	end, opts)
+		-- definitions/references
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "<leader>gr", function()
+			require("trouble").toggle("lsp_references")
+		end, opts)
+		vim.keymap.set("n", "gr", function()
+			require("trouble").toggle("lsp_references")
+		end, opts)
 
-	-- code action
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		-- code action
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-	-- utility
-	vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-	vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
+		-- utility
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, opts)
 
-	-- this triggers the buffer specific formatters, which can be different that Format.nvim for some reason
-	vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")
-end
+		-- this triggers the buffer specific formatters, which can be different that Format.nvim for some reason
+		vim.keymap.set("n", "<leader>bf", ":lua vim.lsp.buf.format { async = true }<CR>")
+	end,
+})
 
-lsp.on_attach(function(client, bufnr)
-	-- Disabling format on save for now
-	-- lsp_format_on_save(client, bufnr)
+-- lsp.on_attach(function(client, bufnr)
+-- Disabling format on save for now
+-- lsp_format_on_save(client, bufnr)
 
-	lsp_onattach_keymaps(client, bufnr)
-end)
+-- lsp_onattach_keymaps(client, bufnr)
+-- end)
 
-lsp.setup()
+-- lsp.setup()
 
 vim.diagnostic.config({
 	virtual_text = true,

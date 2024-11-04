@@ -1,6 +1,6 @@
 local lspconfig = require('lspconfig')
 
-print('volar loading...')
+-- print('volar loading...')
 
 lspconfig.volar.setup({
   init_options = {
