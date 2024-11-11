@@ -15,7 +15,6 @@ mason_lspconfig.setup({
 		"ts_ls",
 		"omnisharp",
 		"eslint",
-		"ruff_lsp",
 		-- "pyright",
 		-- "mypy",
 		-- "pylsp",
