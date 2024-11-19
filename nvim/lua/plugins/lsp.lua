@@ -23,7 +23,7 @@ return {
 		{ "hrsh7th/vim-vsnip" },
 		-- not sure why these are disabled...
 		{ "SirVer/ultisnips", enabled = false },
-		{ "quangnguyen30192/cmp-nvim-ultisnips", enable = false },
+		{ "quangnguyen30192/cmp-nvim-ultisnips", enabled = false },
 	},
 	config = function()
 		-- local lsp = require("lsp-zero")
