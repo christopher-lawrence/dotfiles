@@ -1,0 +1,46 @@
+authtoken: 2VLoOP6RgGRvENGQX9pTjDM6OE4_4iNFfmNhj1KhDztr4xMbJ
+version: 2
+tunnels:
+  crs:
+    proto: http
+      # domain: clawrence.ngrok.dev
+    addr: 3000
+    inspect: true
+    subdomain: clawrence-crs
+  alice:
+    proto: http
+      # domain: clawrence.ngrok.dev
+    addr: 5555
+    inspect: true
+    subdomain: clawrence-alice
+  loiter:
+    proto: http
+    addr: 8180
+    inspect: true
+    subdomain: clawrence-loiter
+  scoring:
+    proto: http
+    addr: 8000
+    inspect: true
+    subdomain: clawrence-scoring
+  sdk:
+    proto: http
+    addr: 8082
+    inspect: true
+    host_header: rewrite
+    subdomain: clawrence-sdk
+  demo:
+    proto: http
+    addr: 3232
+    inspect: true
+    subdomain: clawrence-demo
+
+# See also: https://ngrok.com/docs/secure-tunnels/ngrok-agent/reference/config/#tunnel-definitions
+
+# -------------------------
+# Additional options
+# -------------------------
+# auth: "username:password"
+# host_header: rewrite
+# inspect: true
+# bind_tls: true
