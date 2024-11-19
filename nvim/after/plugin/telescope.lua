@@ -65,6 +65,8 @@ require('telescope').setup {
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('ui-select')
+require("telescope").load_extension("rest")
+local rest = require("telescope").extensions.rest
 
 -- These will be global. 
 -- Add to a 'on_attach' in lsp.lua and pass in bufnr to options for buffer specific
@@ -76,6 +78,7 @@ vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
 vim.keymap.set('n', '<leader>fm', builtin.marks, {})
 vim.keymap.set('n', '<leader>ws', builtin.lsp_workspace_symbols, {})
+vim.keymap.set('n', '<leader>fe', rest.select_env, {})
 -- vim.keymap.set('n', '<leader>gg', builtin.builtin, {})
 vim.keymap.set('n', '<leader>ps', function()
   builtin.grep_string({ search = vim.fn.input("Grep >  ") });
