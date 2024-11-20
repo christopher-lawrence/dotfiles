@@ -15,3 +15,6 @@ memos.json
 .DS_Store
 
 GitHub-Copilot/
+
+# Neovim Lazy package manager lock file
+nvim/lazy-lock.json
