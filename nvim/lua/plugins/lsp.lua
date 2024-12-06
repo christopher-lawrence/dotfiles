@@ -27,7 +27,7 @@ return {
 	},
 	config = function()
 		-- local lsp = require("lsp-zero")
-		local lsp = require("lspconfig")
+		local lsp_config = require("lspconfig")
 		local neodev = require("neodev")
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
@@ -103,7 +103,7 @@ return {
 
 		-- print('volar loading...')
 
-		lsp.volar.setup({
+		lsp_config.volar.setup({
 			init_options = {
 				typescript = {
 					tsdk = "/Users/chris/.config/yarn/global/node_modules/typescript/lib",
@@ -129,7 +129,7 @@ return {
 		})
 
 		-- Fix Undefined global 'vim'
-		lsp.lua_ls.setup({
+		lsp_config.lua_ls.setup({
 			settings = {
 				Lua = {
 					diagnostics = {
@@ -152,7 +152,7 @@ return {
 		})
 
 		-- https://github.com/typescript-language-server/typescript-language-server
-		lsp.ts_ls.setup({
+		lsp_config.ts_ls.setup({
 			-- init_options = {
 			--   tsserver = {
 			--     logVerbosity = 'verbose',
@@ -165,7 +165,7 @@ return {
 			end,
 		})
 
-		lsp.omnisharp.setup({
+		lsp_config.omnisharp.setup({
 			on_attach = function()
 				print("omnisharp attached")
 			end,
@@ -200,7 +200,7 @@ return {
 		-- Plugins
 		-- mypy
 		-- pip install pylsp-mypy
-		lsp.pylsp.setup({
+		lsp_config.pylsp.setup({
 			filetypes = { "python" },
 			-- on_attach = function()
 			-- 	print("pylsp here")
@@ -238,7 +238,7 @@ return {
 		})
 
 		-- disabled for HTMLDJANGO due to the indention
-		lsp.html.setup({
+		lsp_config.html.setup({
 			filetypes = { "html", "htmldjango", "css" },
 			settings = {
 				html = {
@@ -254,20 +254,18 @@ return {
 			end,
 		})
 
-		lsp.prismals.setup({
+		lsp_config.prismals.setup({
 			filetypes = { "prisma" },
 			on_attach = function()
 				print("prisma attached")
 			end,
 		})
 
-		local on_attach = function(client, bufnr)
-			-- print('ruff attached')
-			client.server_capabilities.hoverProvider = false
-		end
-
-		require("lspconfig").ruff.setup({
-			on_attach = on_attach,
+		lsp_config.ruff.setup({
+			on_attach = function(client, bufnr)
+				-- print('ruff attached')
+				client.server_capabilities.hoverProvider = false
+			end,
 			-- trace = "messages",
 			-- init_options = {
 			-- 	settings = {
@@ -276,7 +274,7 @@ return {
 			-- },
 		})
 
-		lsp.emmet_language_server.setup({
+		lsp_config.emmet_language_server.setup({
 			filetypes = {
 				"css",
 				"eruby",
@@ -337,12 +335,8 @@ return {
 				-- this is defined in telescope.lua
 				-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
-				-- (D)ocument
-				vim.keymap.set("n", "<leader>dd", function()
-					require("trouble").toggle("document_diagnostics")
-				end, opts)
-
 				-- (D)iagnostics
+        -- Other diagnostics actions are defined in trouble.lua
 				vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
 				vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
@@ -350,12 +344,6 @@ return {
 				-- definitions/references
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set("n", "<leader>gr", function()
-					require("trouble").toggle("lsp_references")
-				end, opts)
-				vim.keymap.set("n", "gr", function()
-					require("trouble").toggle("lsp_references")
-				end, opts)
 
 				-- code action
 				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
