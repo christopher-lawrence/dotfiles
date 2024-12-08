@@ -125,6 +125,8 @@ return {
 				-- "mypy",
 				-- "pylsp",
 				"html",
+        "graphql",
+        "prismals",
 			},
 		})
 
@@ -161,7 +163,7 @@ return {
 			--   },
 			-- },
 			on_attach = function()
-				print("ts_ls attached")
+				-- print("ts_ls attached")
 			end,
 		})
 
@@ -170,6 +172,13 @@ return {
 				print("omnisharp attached")
 			end,
 		})
+
+    lsp_config.graphql.setup({
+      fileExtensions = { "typescript", "typescriptreact" },
+      on_attach = function()
+        -- print("graphql attached")
+      end,
+    })
 
 		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
