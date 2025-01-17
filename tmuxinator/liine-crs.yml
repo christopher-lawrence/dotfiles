@@ -1,11 +1,7 @@
-# /Users/chris/.config/tmuxinator/python_local.yml
+# /Users/chris/.config/tmuxinator/home-inventory-ui.yml
 
-# Usage:
-# - copy this file to a python project as .tmuxinator.yml
-# - start with `mux local`
-
-name: alice
-root: /Users/chris/src/alice/
+name: liine-crs
+root: ~/src/call-recording-system
 
 # Optional tmux socket
 # socket_name: foo
@@ -16,20 +12,19 @@ root: /Users/chris/src/alice/
 # Project hooks
 
 # Runs on project start, always
-# on_project_start: source ~/src/sandbox/python/django_tut/venv/bin/activate
-# on_project_start: echo "hello"
+# on_project_start: command
 
 # Run on project start, the first time
-# on_project_first_start: source ~/src/sandbox/python/django_tut/venv/bin/activate
+# on_project_first_start: command
 
 # Run on project start, after the first time
 # on_project_restart: command
 
 # Run on project exit ( detaching from tmux session )
-# on_project_exit: deactivate
+# on_project_exit: command
 
 # Run on project stop
-# on_project_stop: deactivate
+# on_project_stop: command
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -50,12 +45,12 @@ tmux_options: -f ~/.config/tmux/tmux.conf
 # attach: false
 
 windows:
-  - vim:
-      layout: main-horizontal
+  - nvim:
       # layout: ec50,320x83,0,0{165x83,0,0,20,154x83,166,0[154x41,166,0,21,154x41,166,42,22]}
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
+      layout: main-vertical
       panes:
-        - source .env && nvim .
-        - source .env
+        - nvim .
+        - 

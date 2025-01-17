@@ -4,7 +4,7 @@
 # - copy this file to a python project as .tmuxinator.yml
 # - start with `mux local`
 
-name: limba_local
+name: liine-limba
 root: /Users/chris/src/limba/
 
 # Optional tmux socket
@@ -56,6 +56,5 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - source ../venv/limba_local3.8/bin/activate && source .env && nvim .
-        - source ../venv/limba_local3.8/bin/activate && source .env
-        - source ../venv/limba_local3.8/bin/activate && source .env
+        - nvim .
+        -
