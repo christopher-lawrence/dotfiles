@@ -94,6 +94,18 @@ return {
 		mason.setup()
 
 		mason_lspconfig.setup({
+			automatic_installation = {
+				"lua_ls",
+				"ts_ls",
+				"omnisharp",
+				"eslint",
+				-- "pyright",
+				-- "mypy",
+				-- "pylsp",
+				"html",
+				"graphql",
+				"prismals",
+			},
 			ensure_installed = {
 				"lua_ls",
 				"ts_ls",
@@ -185,8 +197,8 @@ return {
 		-- pip install "python-lsp-server[all]"
 		--
 		-- Plugins
-		-- mypy
-		-- pip install pylsp-mypy
+		-- mypy: pip install pylsp-mypy
+		-- ruff: pip install python-lsp-ruff
 		lsp_config.pylsp.setup({
 			filetypes = { "python" },
 			-- on_attach = function()
@@ -198,10 +210,19 @@ return {
 						pylsp_mypy = {
 							enabled = true,
 							dmypy = true,
-							live_mode = false,
-							overrides = { "--disable-error-code=import-untyped", true, "--explicit-package-bases" },
+							live_mode = true,
+							overrides = {
+								"--disable-error-code=import-untyped",
+								true,
+								"--explicit-package-bases",
+								"--check-untyped-defs",
+								true,
+								"--ignore-missing-imports",
+								true,
+							},
 							report_progress = true,
 							dmypy_status_file = "/Users/chris/.local/state/nvim/mypy.pid",
+							-- follow_imports = "normal",
 							-- strict = true,
 						},
 						pycodestyle = {
@@ -219,6 +240,10 @@ return {
 							completions = { enabled = true },
 							code_actions = { enabled = true },
 						},
+					},
+					ruff = {
+						enabled = true,
+						formatEnabled = true,
 					},
 				},
 			},
@@ -248,19 +273,19 @@ return {
 			end,
 		})
 
-		lsp_config.ruff.setup({
-			on_attach = function(client, bufnr)
-				-- print('ruff attached')
-				client.server_capabilities.hoverProvider = false
-			end,
-			-- trace = "messages",
-			-- init_options = {
-			-- 	settings = {
-			-- 		logLevel = "debug",
-			-- 	},
-			-- },
-		})
-
+		-- lsp_config.ruff.setup({
+		-- 	on_attach = function(client, bufnr)
+		-- 		-- print('ruff attached')
+		-- 		client.server_capabilities.hoverProvider = false
+		-- 	end,
+		-- 	-- trace = "messages",
+		-- 	-- init_options = {
+		-- 	-- 	settings = {
+		-- 	-- 		logLevel = "debug",
+		-- 	-- 	},
+		-- 	-- },
+		-- })
+		--
 		lsp_config.emmet_language_server.setup({
 			filetypes = {
 				"css",

@@ -39,3 +39,4 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 vim.opt.foldcolumn = "1"
 
+vim.g.python3_host_prog = "/Users/chris/.pyenv/versions/nvim/bin/python"
