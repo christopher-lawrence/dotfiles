@@ -27,6 +27,11 @@ return {
       "<leader>D",
       "<cmd>Trouble diagnostics toggle<cr>",
       desc = "Trouble: Toggle Diagnostics",
+    },
+    {
+      "<leader>gd",
+      "<cmd>Trouble lsp_definitions<cr>",
+      desc = "Trouble: LSP Definitions",
     }
   },
 }

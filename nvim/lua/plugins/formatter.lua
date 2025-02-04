@@ -115,6 +115,9 @@ return {
 					--   }
 					-- end
 				},
+				sql = {
+					require("formatter.filetypes.sql").pgformat,
+				},
 			},
 		})
 	end,

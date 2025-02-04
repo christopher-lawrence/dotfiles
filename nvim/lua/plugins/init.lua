@@ -24,23 +24,7 @@ return {
 		-- auto completion -- removing for now, pylsp uses jedi directly so just need that added to the pyenv
 		-- { 'davidhalter/jedi-vim' },
 		{ "github/copilot.vim" },
-		{
-			"rest-nvim/rest.nvim",
-			config = function()
-				---@type rest.Opts
-				vim.g.rest_nvim = {
-					---@class rest.Config.Env
-					env = {
-						---@type boolean
-						enable = true,
-						---@type string
-						pattern = ".*%.env.json",
-					},
-				}
-			end,
-		},
 	},
-
 	-- Lua functions, some plugins require it
 	{ "nvim-lua/plenary.nvim" },
 }

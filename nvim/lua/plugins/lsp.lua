@@ -6,6 +6,7 @@ return {
 		{ "neovim/nvim-lspconfig" },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
+		{ "folke/lazydev.nvim", ft = "lua" },
 
 		-- Autocompletion
 		{ "hrsh7th/nvim-cmp" },
@@ -33,36 +34,7 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 
 		local cmp = require("cmp")
-		local cmp_action = require("lsp-zero").cmp_action()
 		local cmp_format = require("lsp-zero").cmp_format({ details = true })
-
-		local cmp_kinds = {
-			Text = "  ",
-			Method = "  ",
-			Function = "  ",
-			Constructor = "  ",
-			Field = "  ",
-			Variable = "  ",
-			Class = "  ",
-			Interface = "  ",
-			Module = "  ",
-			Property = "  ",
-			Unit = "  ",
-			Value = "  ",
-			Enum = "  ",
-			Keyword = "  ",
-			Snippet = "  ",
-			Color = "  ",
-			File = "  ",
-			Reference = "  ",
-			Folder = "  ",
-			EnumMember = "  ",
-			Constant = "  ",
-			Struct = "  ",
-			Event = "  ",
-			Operator = "  ",
-			TypeParameter = "  ",
-		}
 
 		cmp.setup({
 			sources = {
@@ -101,7 +73,13 @@ return {
 			-- },
 		})
 
-		-- print('volar loading...')
+		-- TODO: Add more filetype specific configs
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "nvim-dadbod-completion" },
+				{ name = "buffer" },
+			},
+		})
 
 		lsp_config.volar.setup({
 			init_options = {
@@ -125,8 +103,8 @@ return {
 				-- "mypy",
 				-- "pylsp",
 				"html",
-        "graphql",
-        "prismals",
+				"graphql",
+				"prismals",
 			},
 		})
 
@@ -173,12 +151,12 @@ return {
 			end,
 		})
 
-    lsp_config.graphql.setup({
-      fileExtensions = { "typescript", "typescriptreact" },
-      on_attach = function()
-        -- print("graphql attached")
-      end,
-    })
+		lsp_config.graphql.setup({
+			fileExtensions = { "typescript", "typescriptreact" },
+			on_attach = function()
+				-- print("graphql attached")
+			end,
+		})
 
 		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -345,7 +323,7 @@ return {
 				-- vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 
 				-- (D)iagnostics
-        -- Other diagnostics actions are defined in trouble.lua
+				-- Other diagnostics actions are defined in trouble.lua
 				vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
 				vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
 				vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
