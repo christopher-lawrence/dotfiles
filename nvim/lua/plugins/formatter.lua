@@ -34,6 +34,9 @@ return {
 				css = {
 					require("formatter.filetypes.css").prettierd,
 				},
+        graphql = {
+          require("formatter.filetypes.graphql").prettierd,
+        },
 				yaml = {
 					-- require("formatter.filetypes.yaml").prettierd,
 					function()
