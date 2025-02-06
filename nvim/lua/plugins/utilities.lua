@@ -11,12 +11,11 @@ return {
 			config = function()
 				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 			end,
-      lazy = true,
 		},
 		-- https://github.com/sindrets/diffview.nvim
-		{ "sindrets/diffview.nvim", lazy = true },
+		{ "sindrets/diffview.nvim" },
 		-- smooth scrolling
-		{ "psliwka/vim-smoothie", lazy = true },
+		{ "psliwka/vim-smoothie" },
 		-- git icons in the gutter
 		-- disabled in favor of gitsigns
 		{ "airblade/vim-gitgutter", enabled = false },

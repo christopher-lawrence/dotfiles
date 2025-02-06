@@ -4,13 +4,12 @@ return {
 	tag = "0.1.8",
 	-- or                          , branch = '0.1.x',
 	dependencies = {
-		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-lua/plenary.nvim", lazy = true },
 		-- fzf extension
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
 		-- use telescope for ui-select
-		{ "nvim-telescope/telescope-ui-select.nvim" },
+		{ "nvim-telescope/telescope-ui-select.nvim", lazy = true },
 	},
-  lazy = true,
 	config = function()
 		local builtin = require("telescope.builtin")
 
