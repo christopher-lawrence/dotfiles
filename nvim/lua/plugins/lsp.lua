@@ -210,13 +210,11 @@ return {
 						pylsp_mypy = {
 							enabled = true,
 							dmypy = true,
-							live_mode = true,
+							live_mode = false,
 							overrides = {
 								"--disable-error-code=import-untyped",
-								true,
 								"--explicit-package-bases",
 								"--check-untyped-defs",
-								true,
 								"--ignore-missing-imports",
 								true,
 							},
