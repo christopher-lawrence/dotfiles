@@ -1,7 +1,7 @@
 return {
-	{ "arcticicestudio/nord-vim" },
-	{ "ellisonleao/gruvbox.nvim" },
-	{ "Mofiqul/vscode.nvim" },
+	{ "arcticicestudio/nord-vim", lazy = true },
+	{ "ellisonleao/gruvbox.nvim", lazy = true },
+	{ "Mofiqul/vscode.nvim", lazy = true },
 	{
 		"maxmx03/solarized.nvim",
 		config = function()
@@ -9,8 +9,9 @@ return {
 
 			-- vim.cmd.colorscheme("solarized")
 		end,
+		lasy = true,
 	},
-	{ "projekt0n/github-nvim-theme" },
+	{ "projekt0n/github-nvim-theme", lazy = true },
 	{
 		"folke/tokyonight.nvim",
 		config = function()

@@ -1,6 +1,7 @@
 return {
 	-- used by formatters installed with Mason
 	"mhartington/formatter.nvim",
+  lazy = true,
 	config = function()
 		--
 		-- See formatter.nvim: https://github.com/mhartington/formatter.nvim

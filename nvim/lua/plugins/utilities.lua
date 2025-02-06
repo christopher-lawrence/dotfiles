@@ -1,7 +1,7 @@
 return {
 
 	-- neovim dev
-	{ "folke/neodev.nvim" },
+	-- { "folke/neodev.nvim" },
 
 	-- Utilities
 	{
@@ -11,11 +11,12 @@ return {
 			config = function()
 				vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 			end,
+      lazy = true,
 		},
 		-- https://github.com/sindrets/diffview.nvim
-		{ "sindrets/diffview.nvim" },
+		{ "sindrets/diffview.nvim", lazy = true },
 		-- smooth scrolling
-		{ "psliwka/vim-smoothie" },
+		{ "psliwka/vim-smoothie", lazy = true },
 		-- git icons in the gutter
 		-- disabled in favor of gitsigns
 		{ "airblade/vim-gitgutter", enabled = false },

@@ -7,6 +7,7 @@ return {
 			table.insert(opts.ensure_installed, "http")
 		end,
 	},
+  lazy = true,
 	config = function()
 		---@type rest.Opts
 		vim.g.rest_nvim = {

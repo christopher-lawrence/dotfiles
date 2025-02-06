@@ -1,6 +1,7 @@
 return {
 	"folke/trouble.nvim",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
+	lazy = true,
 	cmd = "Trouble",
 	-- config = function()
 	-- 	require("trouble").setup({
@@ -12,26 +13,26 @@ return {
 	opts = {
 		focus = true,
 	},
-  keys = {
-    {
-      "<leader>gr",
-      "<cmd>Trouble lsp_references<cr>",
-      desc = "Trouble: LSP References",
-    },
-    {
-      "<leader>dd",
-      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Trouble: Toggle Buffer Diagnostics",
-    },
-    {
-      "<leader>D",
-      "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Trouble: Toggle Diagnostics",
-    },
-    {
-      "<leader>gd",
-      "<cmd>Trouble lsp_definitions<cr>",
-      desc = "Trouble: LSP Definitions",
-    }
-  },
+	keys = {
+		{
+			"<leader>gr",
+			"<cmd>Trouble lsp_references<cr>",
+			desc = "Trouble: LSP References",
+		},
+		{
+			"<leader>dd",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Trouble: Toggle Buffer Diagnostics",
+		},
+		{
+			"<leader>D",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "Trouble: Toggle Diagnostics",
+		},
+		{
+			"<leader>gd",
+			"<cmd>Trouble lsp_definitions<cr>",
+			desc = "Trouble: LSP Definitions",
+		},
+	},
 }

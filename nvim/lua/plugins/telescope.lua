@@ -10,6 +10,7 @@ return {
 		-- use telescope for ui-select
 		{ "nvim-telescope/telescope-ui-select.nvim" },
 	},
+  lazy = true,
 	config = function()
 		local builtin = require("telescope.builtin")
 
