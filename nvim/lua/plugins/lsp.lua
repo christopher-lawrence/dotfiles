@@ -6,45 +6,54 @@ return {
 		{ "neovim/nvim-lspconfig" },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
-		{ "folke/lazydev.nvim", ft = "lua" },
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
 
 		-- Autocompletion
-		{ "hrsh7th/nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-cmdline" },
 		{ "hrsh7th/cmp-nvim-lua" },
-		{ "hrsh7th/cmp-vsnip" },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+		{ "hrsh7th/nvim-cmp" },
 
 		-- Snippets
-		{ "L3MON4D3/LuaSnip" },
-		{ "rafamadriz/friendly-snippets" },
+		{ "rafamadriz/friendly-snippets", dependencies = { "L3MON4D3/LuaSnip" } },
 		{ "saadparwaiz1/cmp_luasnip" },
-		{ "hrsh7th/vim-vsnip" },
-		-- not sure why these are disabled...
-		{ "SirVer/ultisnips", enabled = false },
-		{ "quangnguyen30192/cmp-nvim-ultisnips", enabled = false },
 	},
 	config = function()
 		-- local lsp = require("lsp-zero")
 		local lsp_config = require("lspconfig")
-		local neodev = require("neodev")
+		-- local neodev = require("neodev")
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 
 		local cmp = require("cmp")
 		local cmp_format = require("lsp-zero").cmp_format({ details = true })
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			sources = {
 				{ name = "nvim_lsp" },
+				{ name = "luasnip" }, -- this is a specific snippet provider
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "buffer" },
 				{ name = "nvim_lua" },
 				{ name = "path" },
-				-- { name = "luasnip" }, -- this is a specific snippet provider
-				{ name = "vsnip" },
-				{ name = "nvim_lsp_signature_help" },
+				{
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				},
 			},
 			preselect = "item",
 			completion = {
@@ -59,18 +68,10 @@ return {
 			},
 			snippet = {
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			formatting = cmp_format,
-			-- formatting = {
-			-- 	-- changing the order of fields so the icon is the first
-			-- 	fields = { "menu", "abbr", "kind" },
-			-- 	format = function(_, vim_item)
-			-- 		vim_item.kind = (cmp_kinds[vim_item.kind] or "") .. vim_item.kind
-			-- 		return vim_item
-			-- 	end,
-			-- },
 		})
 
 		-- TODO: Add more filetype specific configs
@@ -89,7 +90,7 @@ return {
 			},
 		})
 		-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-		neodev.setup({})
+		-- neodev.setup({})
 
 		mason.setup()
 
@@ -169,28 +170,6 @@ return {
 				-- print("graphql attached")
 			end,
 		})
-
-		-- local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-		-- see https://github.com/microsoft/pyright/blob/main/docs/settings.md
-		-- lsp.configure("pyright", {
-		-- 	filetypes = { "python" },
-		-- 	settings = {
-		-- 		python = {
-		-- 			analysis = {
-		-- 				diagnosticMode = "workspace",
-		-- 				diagnosticSeverityOverrides = {
-		-- 					reportGeneralTypeIssues = "warning",
-		-- 					reportOptionalMemberAccess = false,
-		-- 				},
-		-- 			},
-		-- 		},
-		-- 	},
-		-- 	on_attach = function()
-		-- 		-- print("pyright attached")
-		-- 	end,
-		-- 	-- capabilities = capabilities,
-		-- })
 
 		-- Make sure to install pylsp directly into the virutal environment
 		-- url: https://github.com/python-lsp/python-lsp-server
@@ -273,19 +252,6 @@ return {
 			end,
 		})
 
-		-- lsp_config.ruff.setup({
-		-- 	on_attach = function(client, bufnr)
-		-- 		-- print('ruff attached')
-		-- 		client.server_capabilities.hoverProvider = false
-		-- 	end,
-		-- 	-- trace = "messages",
-		-- 	-- init_options = {
-		-- 	-- 	settings = {
-		-- 	-- 		logLevel = "debug",
-		-- 	-- 	},
-		-- 	-- },
-		-- })
-		--
 		lsp_config.emmet_language_server.setup({
 			filetypes = {
 				"css",
@@ -320,22 +286,6 @@ return {
 				variables = {},
 			},
 		})
-
-		-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-		-- local lsp_format_on_save = function(client, bufnr)
-		--   if client.supports_method("textDocument/formatting") then
-		--     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-		--     vim.api.nvim_create_autocmd("BufWritePre", {
-		--       group = augroup,
-		--       buffer = bufnr,
-		--       callback = function()
-		--         -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-		--         -- vim.lsp.buf.formatting_sync()
-		--         vim.lsp.buf.format({ bufnr = bufnr })
-		--       end,
-		--     })
-		--   end
-		-- end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
