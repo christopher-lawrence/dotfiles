@@ -36,12 +36,12 @@ lspconfig.pylsp.setup({
 				},
 				autopep8 = { enabled = false },
 				jedi = { auto_import_modules = { "django" } },
-				jedi_completion = { fuzzy = true },
+				jedi_completion = { enabled = true, fuzzy = true },
 				jedi_hover = { enabled = true },
 				-- This seems broken atm.
 				-- See: https://github.com/python-lsp/python-lsp-server/issues/503
 				rope_autoimport = {
-					enabled = false,
+					enabled = true,
 					memory = true,
 					completions = { enabled = true },
 					code_actions = { enabled = true },
