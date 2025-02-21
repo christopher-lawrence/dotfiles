@@ -7,7 +7,7 @@ return {
 			table.insert(opts.ensure_installed, "http")
 		end,
 	},
-  lazy = true,
+	lazy = true,
 	config = function()
 		---@type rest.Opts
 		vim.g.rest_nvim = {
@@ -18,6 +18,7 @@ return {
 				---@type string
 				pattern = ".*%.env.json",
 			},
+      -- _log_level = vim.log.levels.DEBUG,
 		}
 	end,
 }
