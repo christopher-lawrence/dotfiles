@@ -32,9 +32,9 @@ return {
 		{ "saadparwaiz1/cmp_luasnip", lazy = true },
 	},
 	config = function()
-    -- FOLLOWUP:
-    -- not sure how to use this outside this file
-    -- there are packages that get installed and before the configs run
+		-- FOLLOWUP:
+		-- not sure how to use this outside this file
+		-- there are packages that get installed and before the configs run
 		local mason = require("mason")
 		local mason_lspconfig = require("mason-lspconfig")
 

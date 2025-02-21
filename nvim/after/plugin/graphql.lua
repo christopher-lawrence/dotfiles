@@ -1,8 +1,8 @@
 local lspconfig = require("lspconfig")
 
 lspconfig.graphql.setup({
-	fileExtensions = { "typescript", "typescriptreact" },
+	fileExtensions = { "typescript", "typescriptreact", "python" },
 	on_attach = function()
-		-- print("graphql attached")
+		print("graphql attached")
 	end,
 })
