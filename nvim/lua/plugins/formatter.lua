@@ -25,6 +25,9 @@ return {
 				typescriptreact = {
 					require("formatter.filetypes.typescript").prettierd,
 				},
+				vue = {
+					require("formatter.filetypes.typescript").prettierd,
+				},
 				json = {
 					require("formatter.filetypes.json").prettierd,
 				},
@@ -34,9 +37,9 @@ return {
 				css = {
 					require("formatter.filetypes.css").prettierd,
 				},
-        graphql = {
-          require("formatter.filetypes.graphql").prettierd,
-        },
+				graphql = {
+					require("formatter.filetypes.graphql").prettierd,
+				},
 				yaml = {
 					-- require("formatter.filetypes.yaml").prettierd,
 					function()
