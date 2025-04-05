@@ -5,7 +5,7 @@
 # - start with `mux local`
 
 name: email-popups
-root: /Users/chris/src/shopify/api-demo
+root: /Users/chris/src/shopify/email-popups/
 
 # Optional tmux socket
 # socket_name: foo
