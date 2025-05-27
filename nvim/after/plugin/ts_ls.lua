@@ -14,6 +14,7 @@ lspconfig.ts_ls.setup({
 	--   },
 	-- },
 	init_options = {
+    -- Make sure to install @vue/typescript-plugin locally
 		plugins = {
 			{
 				name = "@vue/typescript-plugin",
@@ -32,10 +33,4 @@ lspconfig.volar.setup({
 	on_attach = function()
 		-- print("Volar attached")
 	end,
-	-- by not specifying tsdk the local node_modules will be used
-	-- init_options = {
-	-- 	typescript = {
-	-- 		tsdk = "/Users/chris/.config/yarn/global/node_modules/typescript/lib",
-	-- 	},
-	-- },
 })
