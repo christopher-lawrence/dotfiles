@@ -4,8 +4,8 @@ return {
 	dependencies = {
 		-- LSP Support
 		{ "neovim/nvim-lspconfig" },
-		{ "williamboman/mason.nvim" },
-		{ "williamboman/mason-lspconfig.nvim" },
+		{ "williamboman/mason.nvim", version = "1.11.x" },
+		{ "williamboman/mason-lspconfig.nvim", version = "1.32.x" },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
@@ -39,7 +39,6 @@ return {
 		local mason_lspconfig = require("mason-lspconfig")
 
 		mason.setup()
-
 		mason_lspconfig.setup({
 			automatic_installation = {
 				"lua_ls",
