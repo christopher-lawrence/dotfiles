@@ -1,5 +1,9 @@
--- Utilities
 return {
+
+	-- neovim dev
+	-- { "folke/neodev.nvim" },
+
+	-- Utilities
 	{
 		-- undo pane
 		{
