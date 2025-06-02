@@ -1,5 +1,6 @@
 require("config.set")
 require("config.remap")
 require("config.lazy")
-require("config.lua_ls")
-require("config.omnisharp")
+-- require("config.lua_ls")
+-- require("config.omnisharp")
+require("lsps")
