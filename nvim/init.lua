@@ -1,6 +1,8 @@
 require("config.set")
 require("config.remap")
+
+-- Load lazy.nvim
 require("config.lazy")
--- require("config.lua_ls")
--- require("config.omnisharp")
+
+-- LSP Configurations
 require("lsps")
