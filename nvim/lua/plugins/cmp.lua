@@ -24,9 +24,14 @@ return {
 	opts = function()
 		local cmp = require("cmp")
 
+    print("Loading nvim-cmp opts...")
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
+
+        print("LspAttach event fired")
+
 				-- print(string.format('event fired: %s', vim.inspect(event)))
 				local opts = { buffer = event.buf, remap = false }
 
@@ -86,6 +91,7 @@ return {
 					name = "lazydev",
 					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 				},
+        { name = "omnisharp" }, -- for C# completions
 			},
 			preselect = "item",
 			completion = {
