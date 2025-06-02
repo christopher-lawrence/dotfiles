@@ -1,68 +1,36 @@
--- lsp-zero
-return {
-	"VonHeikemen/lsp-zero.nvim",
-	dependencies = {
-		-- LSP Support
-		{ "neovim/nvim-lspconfig" },
-		{ "williamboman/mason.nvim", version = "1.11.x" },
-		{ "williamboman/mason-lspconfig.nvim", version = "1.32.x" },
-		{
-			"folke/lazydev.nvim",
-			ft = "lua",
-			opts = {
-				library = {
-					-- See the configuration section for more details
-					-- Load luvit types when the `vim.uv` word is found
-					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-				},
-			},
-		},
+---Modify completion item text to show a
+---label with the name of the source.
+---@param opts cmp-helper.CmpFormatOpts
+---@return cmp.FormattingConfig
+function Cmp_format(opts)
+	return require("plugins.cmp-helper.cmp").format(opts)
+end
 
-		-- Autocompletion
+local cmp_format = Cmp_format({ details = true })
+
+return {
+	-- Autocompletion
+	"hrsh7th/nvim-cmp",
+	version = false,
+	dependencies = {
+		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-cmdline" },
 		{ "hrsh7th/cmp-nvim-lua" },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-		{ "hrsh7th/nvim-cmp" },
-
-		-- Snippets
-		{ "rafamadriz/friendly-snippets", dependencies = { "L3MON4D3/LuaSnip" }, lazy = true },
-		{ "saadparwaiz1/cmp_luasnip", lazy = true },
 	},
-	config = function()
-		-- FOLLOWUP:
-		-- not sure how to use this outside this file
-		-- there are packages that get installed and before the configs run
-		local mason = require("mason")
-		local mason_lspconfig = require("mason-lspconfig")
+	event = "InsertEnter",
+	opts = function()
+		local cmp = require("cmp")
 
-		mason.setup()
-		mason_lspconfig.setup({
-			automatic_installation = {
-				"lua_ls",
-				"ts_ls",
-				"omnisharp",
-				"eslint",
-				"html",
-				"graphql",
-				"prismals",
-			},
-			ensure_installed = {
-				"lua_ls",
-				"ts_ls",
-				"omnisharp",
-				"eslint",
-				"html",
-				"graphql",
-				"prismals",
-			},
-		})
+		print("Loading nvim-cmp opts...")
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
+				print("LspAttach event fired")
+
 				-- print(string.format('event fired: %s', vim.inspect(event)))
 				local opts = { buffer = event.buf, remap = false }
 
@@ -109,5 +77,46 @@ return {
 			-- severity_sort = false,
 			-- float = true,
 		})
+
+    -- Not sure if this works....
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "nvim-dadbod-completion" },
+				{ name = "buffer" },
+			},
+		})
+
+		return {
+			sources = {
+				{ name = "nvim_lsp" },
+				{ name = "luasnip" }, -- this is a specific snippet provider
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "buffer" },
+				{ name = "nvim_lua" },
+				{ name = "path" },
+				{
+					name = "lazydev",
+					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+				},
+				{ name = "omnisharp" }, -- for C# completions
+			},
+			preselect = "item",
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<CR>"] = cmp.mapping.confirm({ select = false }),
+			}),
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
+			snippet = {
+				expand = function(args)
+					require("luasnip").lsp_expand(args.body)
+				end,
+			},
+			formatting = cmp_format,
+		}
 	end,
 }

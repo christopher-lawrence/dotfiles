@@ -18,7 +18,7 @@ return {
 				---@type string
 				pattern = ".*%.env.json",
 			},
-      -- _log_level = vim.log.levels.DEBUG,
+			-- _log_level = vim.log.levels.DEBUG,
 		}
 	end,
 }

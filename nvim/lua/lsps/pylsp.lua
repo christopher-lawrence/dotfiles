@@ -1,5 +1,3 @@
-local lspconfig = require("lspconfig")
-
 -- Make sure to install pylsp directly into the virutal environment
 -- url: https://github.com/python-lsp/python-lsp-server
 -- pip install "python-lsp-server[all]"
@@ -7,7 +5,8 @@ local lspconfig = require("lspconfig")
 -- Plugins
 -- mypy: pip install pylsp-mypy
 -- ruff: pip install python-lsp-ruff
-lspconfig.pylsp.setup({
+vim.lsp.enable("pylsp")
+vim.lsp.config("pylsp", {
 	filetypes = { "python" },
 	-- on_attach = function()
 	-- 	print("pylsp here")

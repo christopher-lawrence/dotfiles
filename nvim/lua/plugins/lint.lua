@@ -1,7 +1,7 @@
 return {
 	-- used by linters installed with Mason
 	"mfussenegger/nvim-lint",
-  lazy = true,
+	lazy = true,
 	config = function()
 		-- Not sure if this is necessary any more??
 		require("lint").linters_by_ft = {

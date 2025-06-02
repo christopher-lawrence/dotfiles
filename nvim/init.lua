@@ -1,5 +1,8 @@
--- lazy.nvim requires 'mapleader' and 'maplocalleader' to be set before loading
-require("remap")
-require("set")
---require('chris')
-require("lazy.lazy")
+require("config.set")
+require("config.remap")
+
+-- Load lazy.nvim
+require("config.lazy")
+
+-- LSP Configurations
+require("lsps")

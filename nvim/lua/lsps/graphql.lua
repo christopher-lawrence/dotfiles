@@ -1,6 +1,5 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.graphql.setup({
+vim.lsp.enable("graphql")
+vim.lsp.config("graphql", {
 	fileExtensions = { "typescript", "typescriptreact", "python" },
 	on_attach = function()
 		print("graphql attached")
