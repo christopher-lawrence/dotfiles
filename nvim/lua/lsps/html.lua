@@ -1,7 +1,5 @@
-local lspconfig = require("lspconfig")
-
--- disabled for HTMLDJANGO due to the indention
-lspconfig.html.setup({
+vim.lsp.enable("html")
+vim.lsp.config("html", {
 	filetypes = { "html", "htmldjango", "css" },
 	settings = {
 		html = {

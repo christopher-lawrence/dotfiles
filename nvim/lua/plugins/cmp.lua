@@ -24,13 +24,12 @@ return {
 	opts = function()
 		local cmp = require("cmp")
 
-    print("Loading nvim-cmp opts...")
+		print("Loading nvim-cmp opts...")
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
 			callback = function(event)
-
-        print("LspAttach event fired")
+				print("LspAttach event fired")
 
 				-- print(string.format('event fired: %s', vim.inspect(event)))
 				local opts = { buffer = event.buf, remap = false }
@@ -79,6 +78,14 @@ return {
 			-- float = true,
 		})
 
+    -- Not sure if this works....
+		cmp.setup.filetype({ "sql" }, {
+			sources = {
+				{ name = "nvim-dadbod-completion" },
+				{ name = "buffer" },
+			},
+		})
+
 		return {
 			sources = {
 				{ name = "nvim_lsp" },
@@ -91,7 +98,7 @@ return {
 					name = "lazydev",
 					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 				},
-        { name = "omnisharp" }, -- for C# completions
+				{ name = "omnisharp" }, -- for C# completions
 			},
 			preselect = "item",
 			completion = {
