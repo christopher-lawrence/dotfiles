@@ -20,3 +20,5 @@ node_modules/
 
 # Neovim Lazy package manager lock file
 nvim/lazy-lock.json
+
+Battle.net/
