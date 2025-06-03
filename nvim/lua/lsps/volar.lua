@@ -1,5 +1,5 @@
-vim.lsp.enable("volar")
-vim.lsp.config("volar", {
+vim.lsp.enable("vue_ls")
+vim.lsp.config("vue_ls", {
 	on_attach = function()
 		print("Volar attached")
 	end,
