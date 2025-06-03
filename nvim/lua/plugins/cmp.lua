@@ -78,7 +78,7 @@ return {
 			-- float = true,
 		})
 
-    -- Not sure if this works....
+		-- Not sure if this works....
 		cmp.setup.filetype({ "sql" }, {
 			sources = {
 				{ name = "nvim-dadbod-completion" },
@@ -91,14 +91,17 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- this is a specific snippet provider
 				{ name = "nvim_lsp_signature_help" },
-				{ name = "buffer" },
 				{ name = "nvim_lua" },
-				{ name = "path" },
 				{
 					name = "lazydev",
 					group_index = 0, -- set group index to 0 to skip loading LuaLS completions
 				},
-				{ name = "omnisharp" }, -- for C# completions
+				{
+					name = "omnisharp",
+					group_index = 0,
+				}, -- for C# completions
+				{ name = "path" },
+				{ name = "buffer" },
 			},
 			preselect = "item",
 			completion = {
