@@ -16,6 +16,18 @@ return {
 			log_level = vim.log.levels.WARN,
 			-- All formatter configurations are opt-in
 			filetype = {
+				cs = {
+					function()
+						return {
+							exe = "csharpier",
+							args = {
+								"format",
+							},
+							stdin = true,
+						}
+					end,
+					-- require("formatter.filetypes.cs"),
+				},
 				javascript = {
 					require("formatter.filetypes.javascript").prettierd,
 				},
