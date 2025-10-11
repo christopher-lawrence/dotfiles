@@ -1,6 +1,5 @@
-local lspconfig = require("lspconfig")
-
-lspconfig.emmet_language_server.setup({
+vim.lsp.enable("emmet_language_server")
+vim.lsp.config("emmet_language_server", {
 	filetypes = {
 		"css",
 		"eruby",
@@ -13,6 +12,7 @@ lspconfig.emmet_language_server.setup({
 		"pug",
 		"typescriptreact",
 	},
+  -- I don't think this is correct. This might need to be wrapped in the `settings` table
 	init_options = {
 		---@type table<string, string>
 		includeLanguages = {},

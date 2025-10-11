@@ -3,7 +3,6 @@
 -- Do not use the 'omnisharp-vim' plugin as it doesn't seem to add anything other than helper functions
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/configs/omnisharp.lua
 --
-local util = require("lspconfig.util")
 
 vim.lsp.enable("omnisharp")
 vim.lsp.config("omnisharp", {
@@ -46,7 +45,7 @@ vim.lsp.config("omnisharp", {
 		},
 	},
 	filetypes = { "cs", "vb" },
-	root_dir = util.root_pattern("*.sln", "*.csproj", "omnisharp.json", "function.json")(),
+	root_markers = { "*.sln", "*.csproj", "omnisharp.json", "function.json" },
 	on_new_config = function(new_config, _)
 		-- Get the initially configured value of `cmd`
 		new_config.cmd = { unpack(new_config.cmd or {}) }
