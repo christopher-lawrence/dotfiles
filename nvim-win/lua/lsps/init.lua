@@ -1,0 +1,8 @@
+require("lsps.lua_ls")
+require("lsps.omnisharp")
+require("lsps.ts_ls")
+require("lsps.pylsp")
+require("lsps.emmet_language_server")
+require("lsps.html")
+require("lsps.prismals")
+require("lsps.volar")

@@ -19,6 +19,6 @@ GitHub-Copilot/
 node_modules/
 
 # Neovim Lazy package manager lock file
-nvim/lazy-lock.json
+lazy-lock.json
 
 Battle.net/

@@ -14,7 +14,7 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = os.getenv("HOMEPATH") .. "\\.vim\\undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false
@@ -39,4 +39,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = false
 vim.opt.foldcolumn = "1"
 
-vim.g.python3_host_prog = "/Users/chris/.pyenv/versions/nvim/bin/python"
+-- set insert mode to a bar
+vim.opt.guicursor = "i:ver25"
+
+-- vim.g.python3_host_prog = "/Users/chris/.pyenv/versions/nvim/bin/python"
