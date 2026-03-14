@@ -6,14 +6,16 @@ return {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 		dependencies = { "rafamadriz/friendly-snippets" },
+		enabled = false,
 		lazy = false,
 		config = function()
 			print("Loading LuaSnip config...")
-			require("luasnip.loaders.from_vscode").lazy_load()
+			-- require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_snipmate").lazy_load()
 		end,
 	},
 	{
 		-- Snippets
-		{ "saadparwaiz1/cmp_luasnip", lazy = true, enabled = true },
+		-- { "saadparwaiz1/cmp_luasnip", lazy = true, enabled = true },
 	},
 }
