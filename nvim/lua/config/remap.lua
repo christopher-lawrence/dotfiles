@@ -73,8 +73,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- (D)iagnostics
 		-- Other diagnostics actions are defined in trouble.lua
 		vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-		vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-		vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+		vim.keymap.set("n", "[d", vim.diagnostic.get_next, opts)
+		vim.keymap.set("n", "]d", vim.diagnostic.get_prev, opts)
 
 		-- definitions/references
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)

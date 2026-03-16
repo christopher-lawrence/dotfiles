@@ -14,14 +14,25 @@ return {
 		{ "psliwka/vim-smoothie" },
 		-- git icons in the gutter
 		-- disabled in favor of gitsigns
-		{ "airblade/vim-gitgutter", enabled = false },
+		-- { "airblade/vim-gitgutter", enabled = false },
 		-- vim wiki
-		{ "vimwiki/vimwiki", enabled = false },
+		-- { "vimwiki/vimwiki", enabled = false },
 		-- auto completion -- removing for now, pylsp uses jedi directly so just need that added to the pyenv
 		-- { 'davidhalter/jedi-vim' },
 		{ "github/copilot.vim" },
 	},
 	-- Lua functions, some plugins require it
 	{ "nvim-lua/plenary.nvim" },
+  { "fdavies93/daily-notes.nvim",
+    enabled = false,
+    opts = {
+      writing = {
+        root = "~/Documents/notes",
+        day = {
+          filename = "daily/%Y/%m-%d"
+        }
+      }
+    }
+  }
 }
 

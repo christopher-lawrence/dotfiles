@@ -39,6 +39,9 @@ return {
     -- (Default) Only show the documentation popup when manually triggered
     completion = { documentation = { auto_show = true } },
 
+    -- Use LuaSnip as the snippet engine so custom LuaSnip snippets appear in completions
+    snippets = { preset = 'luasnip' },
+
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
@@ -50,7 +53,12 @@ return {
     -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
     --
     -- See the fuzzy documentation for more information
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+    fuzzy = {
+      implementation = "prefer_rust_with_warning",
+      prebuilt_binaries = {
+        extra_curl_args = { "--ssl-no-revoke" }
+      }
+    }
   },
   opts_extend = { "sources.default" }
 }
