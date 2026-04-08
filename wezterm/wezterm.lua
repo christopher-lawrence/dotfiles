@@ -65,6 +65,13 @@ config.keys = {
     mods = 'LEADER',
     action = act.ActivatePaneDirection 'Down',
   },
+  {
+    key = 'j',
+    mods = 'LEADER|SHIFT',
+    action = act.PaneSelect {
+      mode = 'SwapWithActive',
+    },
+  }
 }
 
 config.native_macos_fullscreen_mode = true
