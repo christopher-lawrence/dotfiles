@@ -33,6 +33,9 @@ vim.opt.colorcolumn = "120"
 
 vim.opt.showmode = false
 
+-- needed for obsidian.nvim to show checkboxes
+vim.opt.conceallevel = 1
+
 -- use treesitter for code folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

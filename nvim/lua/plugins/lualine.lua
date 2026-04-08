@@ -1,6 +1,9 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", requires = true },
+	dependencies = {
+		{ "nvim-tree/nvim-web-devicons", requires = true },
+		{ "archibate/lualine-time", requires = true },
+	},
 	config = function()
 		local lualine = require("lualine")
 
@@ -28,15 +31,31 @@ return {
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = { { "filename", path = 1 } },
 				lualine_x = { "rest", "encoding", "fileformat", "filetype" },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = { "progress", "location" },
+				lualine_z = {
+					{
+						"ctime",
+						format = "%H:%M",
+						fmt = function(str)
+							return " " .. str
+						end,
+					},
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
 				lualine_b = {},
 				lualine_c = { "filename" },
 				lualine_x = { "location" },
-				lualine_y = {},
+				lualine_y = {
+					{
+						"ctime",
+						format = "%H:%M",
+						fmt = function(str)
+							return " " .. str
+						end,
+					},
+				},
 				lualine_z = {},
 			},
 			tabline = {},

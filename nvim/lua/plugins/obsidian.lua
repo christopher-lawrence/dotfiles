@@ -1,0 +1,27 @@
+return {
+  "obsidian-nvim/obsidian.nvim",
+  version = "*", -- use latest release, remove to use latest commit
+  -- ft = "markdown",
+  ---@module 'obsidian'
+  ---@type obsidian.config
+  opts = {
+    legacy_commands = false, -- this will be removed in the next major release
+    workspaces = {
+      {
+        name = "notes",
+        path = "~/src/notes",
+      },
+      {
+        name = "jotblock-docs",
+        path = "~/src/jotblock-docs",
+      },
+    },
+    checkbox = {
+      enable = true,
+    },
+    daily_notes = {
+      folder = "daily",
+      date_format = "YYYY/MM-MMM/DD-ddd",
+    },
+  },
+}

@@ -1,0 +1,28 @@
+{
+	"Just a Test": {
+		"prefix": "test",
+		"body": [
+			"Console.WriteLine(\"Just a Test\");"
+		],
+		"description": "Just a Test"
+	},
+	"Model Configuration": {
+		"prefix": "modelconfig",
+		"body": [
+			"using HomeInventory.Api.Domain.Models;",
+			"using Microsoft.EntityFrameworkCore;",
+			"using Microsoft.EntityFrameworkCore.Metadata.Builders;",
+			"",
+			"namespace HomeInventory.Api.Data.Configuration;",
+			"",
+			"public sealed class ${1:ClassName} : IEntityTypeConfiguration<${2:ModelName}>",
+			"{",
+			"\tpublic void Configure(EntityTypeBuilder<${2:ModelName}> builder)",
+			"\t{",
+			"\t\t$0",
+			"\t}",
+			"}"
+		],
+		"description": "Entity Framework IEntityTypeConfiguration boilerplate"
+	}
+}
