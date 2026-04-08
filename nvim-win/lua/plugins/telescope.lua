@@ -1,12 +1,12 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	-- explicitly setting the tag to avoid breaking changes
-	tag = "0.1.8",
+	tag = "v0.1.9",
 	-- or                          , branch = '0.1.x',
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", lazy = true },
 		-- fzf extension
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' },
 		-- use telescope for ui-select
 		{ "nvim-telescope/telescope-ui-select.nvim", lazy = true },
 	},

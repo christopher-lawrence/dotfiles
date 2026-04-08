@@ -78,6 +78,11 @@ opts = {
             "<cmd>Trouble definition_split<cr>",
             desc = "Trouble: LSP Definitions",
         },
+        {
+          "<leader>gi",
+          "<cmd>Trouble lsp_implementations<cr>",
+          desc = "Trouble: LSP Implementations",
+        },
         -- [b]uffer [d]iagnostics
         {
             "<leader>bd",
