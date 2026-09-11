@@ -11,6 +11,10 @@ return {
         name = "notes",
         path = "~/Documents/notes/",
       },
+      {
+        name = "plans",
+        path = "~/src/centrix-etms-main/.ai/"
+      },
     },
     checkbox = {
       enable = true,

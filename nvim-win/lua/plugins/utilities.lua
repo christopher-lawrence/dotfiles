@@ -19,7 +19,7 @@ return {
 		-- { "vimwiki/vimwiki", enabled = false },
 		-- auto completion -- removing for now, pylsp uses jedi directly so just need that added to the pyenv
 		-- { 'davidhalter/jedi-vim' },
-		{ "github/copilot.vim" },
+		{ "github/copilot.vim", enabled = false },
 	},
 	-- Lua functions, some plugins require it
 	{ "nvim-lua/plenary.nvim" },
