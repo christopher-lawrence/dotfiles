@@ -1,30 +1,44 @@
 return {
 	-- tree parser
 	"nvim-treesitter/nvim-treesitter",
-  branch = "master",
-  build = ":TSUpdate",
+	branch = "main",
+	lazy = false, -- the main branch does not support lazy-loading
+	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").setup({
-			-- A list of parser names, or "all"
-			ensure_installed = { "python", "javascript", "typescript", "c", "lua", "bash", "graphql", "python" },
+		local ts = require("nvim-treesitter")
 
-			-- Install parsers synchronously (only applied to `ensure_installed`)
-			sync_install = false,
+		-- parsers install to stdpath("data")/site, already on the runtimepath
+		local parsers = {
+			"bash",
+			"c_sharp",
+			"graphql",
+			"javascript",
+			"lua",
+			"python",
+			"typescript",
+		}
 
-			-- Automatically install missing parsers when entering buffer
-			-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-			auto_install = true,
+		-- install() shells out to `tree-sitter build`, so skip it when there is no
+		-- compiler rather than logging a failure for every parser on each startup
+		local has_compiler = false
+		for _, cc in ipairs({ "cc", "gcc", "clang", "cl" }) do
+			if vim.fn.executable(cc) == 1 then
+				has_compiler = true
+				break
+			end
+		end
 
-			highlight = {
-				-- `false` will disable the whole extension
-				enable = true,
+		if has_compiler then
+			ts.install(parsers)
+		end
 
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-				-- Using this option may slow down your editor, and you may see some duplicate highlights.
-				-- Instead of true it can also be a list of languages
-				additional_vim_regex_highlighting = false,
-			},
+		-- highlighting is Neovim's job on the main branch; nvim ships ftplugins that
+		-- do this for markdown/lua/help/query only
+		vim.api.nvim_create_autocmd("FileType", {
+			desc = "start treesitter highlighting when a parser is installed",
+			callback = function(event)
+				pcall(vim.treesitter.start, event.buf)
+			end,
 		})
 	end,
 }
